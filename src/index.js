@@ -1,6 +1,17 @@
 class Pomment {
-    constructor() {
-        // blah blah
+    constructor(element, {
+        server = null,
+        thread = null,
+        avatarPrefix = 'https://secure.gravatar.com/avatar/',
+        title = document.title,
+        url = document.location.href,
+    } = {}) {
+        if (typeof server !== 'string') {
+            throw new TypeError('Value `server` is required');
+        }
+        if (typeof thread !== 'string') {
+            throw new TypeError('Value `thread` is required');
+        }
     }
 }
 
