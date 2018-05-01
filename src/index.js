@@ -1,5 +1,7 @@
+import './assets/scss/index.scss';
 import ajax from './lib/ajax';
 import TemplateMain from './elements/main.eft';
+import TemplateForm from './elements/form.eft';
 
 class Pomment {
     constructor(element, {
@@ -36,7 +38,9 @@ class Pomment {
         }, (err, res) => {
             this.templateMain = new TemplateMain();
             this.templateMain.$mount({ target: this.element });
-            alert(res);
+            this.templateForm = new TemplateForm();
+            this.templateMain.mpForm = this.templateForm;
+            console.log(res);
         });
     }
 }
