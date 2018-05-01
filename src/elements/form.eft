@@ -8,7 +8,7 @@
             #src = {{avatarURL}}
             #style = background-color: {{color = #fff}}
     >form
-        @submit = eventSubmit
+        @submit.prevent = eventSubmit
         >div
             #class = guest-meta
             >input
