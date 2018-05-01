@@ -1,4 +1,5 @@
 import ajax from './lib/ajax';
+import TemplateMain from './elements/main.eft';
 
 class Pomment {
     constructor(element, {
@@ -19,6 +20,10 @@ class Pomment {
         if (typeof thread !== 'string') {
             throw new TypeError('Value `thread` is required');
         }
+        if (typeof this.element.dataset.pomment !== 'undefined') {
+            throw new Error('The element is already loaded as Pomment instance');
+        }
+        this.element.dataset.pomment = 'loaded';
         this.server = server;
         this.thread = thread;
         this.avatarPrefix = avatarPrefix;
@@ -29,6 +34,8 @@ class Pomment {
         ajax({
             url: `${this.server}/v1/thread/${this.thread}/list`,
         }, (err, res) => {
+            this.templateMain = new TemplateMain();
+            this.templateMain.$mount({ target: this.element });
             alert(res);
         });
     }
