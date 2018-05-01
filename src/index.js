@@ -1,3 +1,5 @@
+import ajax from './lib/ajax'
+
 class Pomment {
     constructor(element, {
         server = null,
@@ -17,7 +19,20 @@ class Pomment {
         if (typeof thread !== 'string') {
             throw new TypeError('Value `thread` is required');
         }
+        this.server = server;
+        this.thread = thread;
+        this.avatarPrefix = avatarPrefix;
+        this.title = title;
+        this.url = url;
+    }
+    init() {
+        ajax({
+            url: `${this.server}/v1/thread/${this.thread}/list`,
+        }, (err, res) => {
+            alert(res);
+        });
     }
 }
 
+// noinspection JSUnusedGlobalSymbols
 export default Pomment;
