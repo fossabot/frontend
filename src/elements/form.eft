@@ -8,6 +8,7 @@
             #src = {{avatarURL}}
             #style = background-color: {{color = #fff}}
     >form
+        @submit = eventSubmit
         >div
             #class = guest-meta
             >input
@@ -38,7 +39,6 @@
             #class = submit
             #type = submit
             #value = {{tipSubmit = Submit}}
-            @click = eventSubmit
         >input
             #class = submit
             #type = button

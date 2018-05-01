@@ -42,6 +42,13 @@ class Pomment {
             this.templateMain.$mount({ target: this.element });
             this.templateMain.mpForm = templateForm;
             console.log(response);
+            templateForm.$methods.eventSubmit = ({ state }) => {
+                alert(`您输入了以下信息：
+用户名：${state.$data.valueName}
+邮箱：${state.$data.valueEmail}
+主页：${state.$data.valueHomePage}`);
+                return false;
+            };
         });
     }
 }
