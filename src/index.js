@@ -46,7 +46,8 @@ class Pomment {
                 alert(`您输入了以下信息：
 用户名：${state.$data.valueName}
 邮箱：${state.$data.valueEmail}
-主页：${state.$data.valueHomePage}`);
+主页：${state.$data.valueHomePage}
+内容：${state.$data.valueContent}`);
                 return false;
             };
         });

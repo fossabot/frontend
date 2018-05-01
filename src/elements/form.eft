@@ -33,6 +33,7 @@
                 #placeholder = {{tipWebsite = Website}}
                 #required = required
         >textarea
+            %value = {{valueContent}}
             #placeholder = {{tipContent = Why not say something?}}
             #required = required
         >input
