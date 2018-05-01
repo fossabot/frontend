@@ -36,11 +36,12 @@ class Pomment {
         ajax({
             url: `${this.server}/v1/thread/${this.thread}/list`,
         }, (err, res) => {
+            const response = JSON.parse(res);
             const templateForm = new TemplateForm();
             this.templateMain = new TemplateMain();
             this.templateMain.$mount({ target: this.element });
             this.templateMain.mpForm = templateForm;
-            console.log(res);
+            console.log(response);
         });
     }
 }
