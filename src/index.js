@@ -25,12 +25,15 @@ class Pomment {
         this.url = url;
     }
     init() {
+        if (this.templateMain) {
+            this.templateMain = new TemplateMain();
+        }
         ajax({
             url: `${this.server}/v1/thread/${this.thread}/list`,
         }, (err, res) => {
             const response = JSON.parse(res);
+            // 访客表单
             const templateForm = new TemplateForm();
-            this.templateMain = new TemplateMain();
             this.templateMain.$mount({ target: this.element });
             this.templateMain.mpForm = templateForm;
             console.log(response);
