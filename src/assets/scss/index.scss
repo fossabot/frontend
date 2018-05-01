@@ -1,4 +1,4 @@
-#pomment {
+.pomment {
     box-shadow: 0 0 22px 2px rgba(0, 0, 0, 0.052);
     word-break: break-all;
     input[type=text], input[type=button], input[type=submit], textarea {
@@ -91,7 +91,7 @@
                 margin: 0;
             }
         }
-        .form, .guest-edit {
+        form, .guest-edit {
             .guest-meta {
                 display: flex;
                 margin-bottom: 6px;
