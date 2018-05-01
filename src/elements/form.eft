@@ -38,6 +38,7 @@
             #class = submit
             #type = submit
             #value = {{tipSubmit = Submit}}
+            @click = eventSubmit
         >input
             #class = submit
             #type = button
@@ -48,3 +49,4 @@
             #type = button
             #value = {{tipCancel = Cancel}}
             #style = display: {{displayCancel = none}};
+            @click = eventCancel
