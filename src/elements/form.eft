@@ -1,0 +1,47 @@
+>div
+    #class = master
+    -mpInfoBar
+    >div
+        #class = avatar
+        >img
+            #alt = {{avatarInfo}}
+            #src = {{avatarURL}}
+            #style = background-color: {{color = #fff}}
+    >form
+        >div
+            #class = guest-meta
+            >input
+                #type = text
+                #autocomplete = nope
+                #class = user-info base-color
+                #placeholder = {{tipName = Name}}
+                #required = required
+            >input
+                #type = email
+                #autocomplete = nope
+                #class = user-info base-color
+                #placeholder = {{tipEmail = Email}}
+                #required = required
+            >input
+                #type = url
+                #autocomplete = nope
+                #class = user-info base-color
+                #placeholder = {{tipWebsite = Website}}
+                #required = required
+        >textarea
+            #placeholder = {{tipContent = Why not say something?}}
+            #required = required
+        >input
+            #class = submit
+            #type = submit
+            #value = {{tipSubmit = Submit}}
+        >input
+            #class = submit
+            #type = button
+            #value = {{tipSubmitting = Submitting ...}}
+            #style = display: {{displayPseudoCancel = none}};
+        >input
+            #class = cancel
+            #type = button
+            #value = {{tipCancel = Cancel}}
+            #style = display: {{displayCancel = none}};
