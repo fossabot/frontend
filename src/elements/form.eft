@@ -12,18 +12,21 @@
             #class = guest-meta
             >input
                 #type = text
+                %value = {{valueName}}
                 #autocomplete = nope
                 #class = user-info base-color
                 #placeholder = {{tipName = Name}}
                 #required = required
             >input
                 #type = email
+                %value = {{valueEmail}}
                 #autocomplete = nope
                 #class = user-info base-color
                 #placeholder = {{tipEmail = Email}}
                 #required = required
             >input
                 #type = url
+                %value = {{valueHomePage}}
                 #autocomplete = nope
                 #class = user-info base-color
                 #placeholder = {{tipWebsite = Website}}
