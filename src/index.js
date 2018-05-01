@@ -4,9 +4,7 @@ import TemplateMain from './elements/main.eft';
 import TemplateForm from './elements/form.eft';
 
 class Pomment {
-    constructor(element, {
-        server = null,
-        thread = null,
+    constructor(element, server, thread, {
         avatarPrefix = 'https://secure.gravatar.com/avatar/',
         title = document.title,
         url = document.location.href,
@@ -15,12 +13,6 @@ class Pomment {
             this.element = document.querySelector(element);
         } else {
             this.element = element;
-        }
-        if (typeof server !== 'string') {
-            throw new TypeError('Value `server` is required');
-        }
-        if (typeof thread !== 'string') {
-            throw new TypeError('Value `thread` is required');
         }
         if (typeof this.element.dataset.pomment !== 'undefined') {
             throw new Error('The element is already loaded as Pomment instance');
