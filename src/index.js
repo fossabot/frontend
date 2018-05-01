@@ -1,4 +1,4 @@
-import ajax from './lib/ajax'
+import ajax from './lib/ajax';
 
 class Pomment {
     constructor(element, {
