@@ -15,6 +15,7 @@ import eft from 'rollup-plugin-eft';
 import replace from 'rollup-plugin-replace';
 
 const getBuildPlan = ({
+    enableUglify = true,
     extractCSS = false,
     withConsole = false,
     withSourceMap = false,
@@ -59,11 +60,11 @@ const getBuildPlan = ({
             },
             objectAssign: 'Object.assign',
         }),
-        uglify({
+        (enableUglify && uglify({
             compress: {
                 drop_console: !withConsole,
             },
-        }),
+        })),
         fileSize(),
     ],
 });
