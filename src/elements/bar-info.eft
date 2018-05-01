@@ -1,0 +1,9 @@
+>div
+    #class = bar clearfix {{barType = info}}
+    >span
+        #class = left
+        -richInfo
+    >span
+        #class = right
+        >a
+            @click = eventClick
