@@ -17,7 +17,7 @@ const ajax = ({
      * @type {XMLHttpRequest}
      */
     const request = new XMLHttpRequest();
-    request.open((typeof method === 'string') ? method : 'POST', url, true);
+    request.open(method, url, true);
     request.onload = () => {
         callback(null, request.responseText);
     };
