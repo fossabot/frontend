@@ -19,10 +19,10 @@ const ajax = ({
     const request = new XMLHttpRequest();
     request.open(method, url, true);
     request.onload = () => {
-        callback(null, request.responseText);
+        callback(request.status, request.responseText);
     };
     request.onerror = () => {
-        callback('Connection error', null);
+        callback(-1, null);
     };
     if (headers) {
         console.log(headers);
