@@ -13,10 +13,10 @@ import TemplateComment from './elements/comment.eft';
 import TemplateForm from './elements/form.eft';
 import TemplateMain from './elements/main.eft';
 
-const createComment = (item) => {
+const createComment = (_this, item) => {
     const primary = new TemplateComment({
         $data: {
-            avatarSource: avatarURL(this.avatarPrefix, item.emailHashed),
+            avatarSource: avatarURL(_this.avatarPrefix, item.emailHashed),
             absoluteTime: item.birth,
             relativeTime: timeSince(new Date(item.birth)).value,
             btnSubmit: tranString('btnSubmit'),
@@ -117,7 +117,7 @@ class Pomment {
             const dataSorted = makeTree(Object.values(response.content));
             console.log(dataSorted);
             for (let i = 0; i < dataSorted.length; i += 1) {
-                const primary = createComment(dataSorted[i]);
+                const primary = createComment(this, dataSorted[i]);
                 this.templateMain.mpComments.push(primary);
             }
             /* templateForm.$methods.eventSubmit = ({ state }) => {
