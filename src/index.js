@@ -3,44 +3,11 @@ import md5 from 'blueimp-md5';
 import './assets/scss/index.scss';
 import ajax from './lib/ajax';
 import avatarURL from './lib/gravatar';
-import isBlank from './lib/is-blank';
+import createComment from './handler/create-comment';
 import makeTree from './lib/make-tree';
-import timeSince from './lib/time-since';
 import tranString from './i18n/main';
-import MinorName from './elements/minor/name.eft';
-import MinorNameLink from './elements/minor/name-link.eft';
-import TemplateComment from './elements/comment.eft';
 import TemplateForm from './elements/form.eft';
 import TemplateMain from './elements/main.eft';
-
-const createComment = (_this, item, master) => {
-    const primary = new TemplateComment({
-        $data: {
-            avatarSource: avatarURL(_this.avatarPrefix, item.emailHashed),
-            absoluteTime: item.birth,
-            masterBackground: master ? 'bg' : '',
-            relativeTime: timeSince(new Date(item.birth)).value,
-            btnSubmit: tranString('btnSubmit'),
-            btnSubmitting: tranString('btnSubmitting'),
-            btnCancel: tranString('btnCancel'),
-        },
-    });
-    if (isBlank(item.website)) {
-        primary.mpPostName = new MinorName({
-            $data: {
-                content: item.name,
-            },
-        });
-    } else {
-        primary.mpPostName = new MinorNameLink({
-            $data: {
-                url: item.website,
-                content: item.name,
-            },
-        });
-    }
-    return primary;
-};
 
 class Pomment {
     constructor(element, server, thread, {
