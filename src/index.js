@@ -79,14 +79,15 @@ class Pomment {
                 }
                 state.$data.avatarSource = avatarURL(this.avatarPrefix, md5(valueEmail));
             };
-            templateForm.$methods.eventSubmit = ({ state }) => {
-                /* alert(`您输入了以下信息：
+            // 2. 评论树处理
+            /* templateForm.$methods.eventSubmit = ({ state }) => {
+                alert(`您输入了以下信息：
 用户名：${state.$data.valueName}
 邮箱：${state.$data.valueEmail}
 主页：${state.$data.valueSite}
-内容：${state.$data.valueContent}`); */
+内容：${state.$data.valueContent}`);
                 return false;
-            };
+            }; */
         });
     }
 }
