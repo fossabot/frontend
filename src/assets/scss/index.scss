@@ -42,6 +42,33 @@
             margin: 0;
         }
     }
+    .focus {
+            background-color: #e1f5fe !important;
+            time, .bottom {
+                color: #afc2cb !important;
+            }
+            hr {
+                border-bottom: 1px #afc2cb dashed !important;
+            }
+        }
+        .bg {
+            &:nth-child(even) {
+                background-color: #fff;
+            }
+            &:nth-child(odd) {
+                background-color: #f6f6f6;
+            }
+        }
+        .slave {
+            padding-left: 0;
+            box-shadow: #c1c1c1 -4px 0 0;
+            margin-left: 4px;
+            .outer {
+                .master {
+                    padding-left: 16px;
+                }
+            }
+        }
     .master {
         padding: 8px;
         min-height: 64px;
@@ -177,9 +204,7 @@
                 pointer-events: none;
             }
         }
-    }
-    .display-container {
-        .focus {
+        &.focus {
             background-color: #e1f5fe !important;
             time, .bottom {
                 color: #afc2cb !important;
@@ -188,7 +213,7 @@
                 border-bottom: 1px #afc2cb dashed !important;
             }
         }
-        .bg {
+        &.bg {
             &:nth-child(even) {
                 background-color: #fff;
             }

@@ -1,4 +1,4 @@
->div.master
+>div.master.{{masterBackground}}
     >div.avatar
         #style = background-image: url({{avatarSource}})
     >div.meta
