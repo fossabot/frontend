@@ -22,6 +22,8 @@ const createComment = (_this, item, master) => {
             content: item.content,
             masterBackground: master ? 'bg' : '',
             // 以下是字段部分
+            btnEdit: tranString('btnEdit'),
+            btnReply: tranString('btnReply'),
             btnSubmit: tranString('btnSubmit'),
             btnSubmitting: tranString('btnSubmitting'),
             btnCancel: tranString('btnCancel'),

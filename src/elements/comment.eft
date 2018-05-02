@@ -10,7 +10,13 @@
                 .{{relativeTime}}
         >div.content
             .{{content}}
-            -mpOption
+            >hr
+            >a
+                .{{btnReply}}
+            >span.{{showEdit}}
+                .  |  
+            >a.{{showEdit}}
+                .{{btnEdit}}
         >form.guest-edit
             >textarea
                 #autocomplete = nope
