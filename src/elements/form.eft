@@ -3,10 +3,7 @@
     -mpInfoBar
     >div
         #class = avatar
-        >img
-            #alt = {{avatarInfo}}
-            #src = {{avatarURL}}
-            #style = background-color: {{color = #777}}
+        #style = background-image: url({{avatarSource}})
     >form
         @submit.prevent = eventSubmit
         >div

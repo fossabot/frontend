@@ -1,5 +1,8 @@
+import md5 from 'blueimp-md5';
+
 import './assets/scss/index.scss';
 import ajax from './lib/ajax';
+import avatarURL from './lib/gravatar';
 import tranString from './i18n/main';
 import TemplateMain from './elements/main.eft';
 import TemplateForm from './elements/form.eft';
@@ -40,9 +43,9 @@ class Pomment {
             let valueEmail;
             let valueSite;
             try {
-                valueName = localStorage.getItem('PommentName');
-                valueEmail = localStorage.getItem('PommentEmail');
-                valueSite = localStorage.getItem('PommentSite');
+                valueName = localStorage.getItem('PommentName') || '';
+                valueEmail = localStorage.getItem('PommentEmail') || '';
+                valueSite = localStorage.getItem('PommentSite') || '';
             } catch (e) {
                 console.log(`An error occurred while reading localStorage: ${e}`);
                 valueName = '';
@@ -62,24 +65,26 @@ class Pomment {
                 valueName,
                 valueEmail,
                 valueSite,
+                avatarSource: avatarURL(this.avatarPrefix, md5(valueEmail)),
             };
             this.templateMain.mpForm = templateForm;
-            console.log(response);
             templateForm.$methods.eventMetaBlur = ({ state }) => {
+                ({ valueName, valueEmail, valueSite } = state.$data);
                 try {
-                    localStorage.setItem('PommentName', state.$data.valueName);
-                    localStorage.setItem('PommentEmail', state.$data.valueEmail);
-                    localStorage.setItem('PommentSite', state.$data.valueSite);
+                    localStorage.setItem('PommentName', valueName);
+                    localStorage.setItem('PommentEmail', valueEmail);
+                    localStorage.setItem('PommentSite', valueSite);
                 } catch (e) {
                     console.log(`An error occurred while reading localStorage: ${e}`);
                 }
+                state.$data.avatarSource = avatarURL(this.avatarPrefix, md5(valueEmail));
             };
             templateForm.$methods.eventSubmit = ({ state }) => {
-                alert(`您输入了以下信息：
+                /* alert(`您输入了以下信息：
 用户名：${state.$data.valueName}
 邮箱：${state.$data.valueEmail}
 主页：${state.$data.valueSite}
-内容：${state.$data.valueContent}`);
+内容：${state.$data.valueContent}`); */
                 return false;
             };
         });

@@ -55,12 +55,10 @@
             position: sticky;
             top: 8px;
             bottom: 8px;
-            img {
-                width: 100%;
-                border-radius: 50%;
-                box-shadow: 0 8px 21px rgba(0, 0, 0, 0.055);
-                background-color: #fff;
-            }
+            border-radius: 50%;
+            box-shadow: 0 8px 21px rgba(0, 0, 0, 0.055);
+            background-color: #fff;
+            background-size: contain;
         }
         .meta {
             margin-left: 68px;
