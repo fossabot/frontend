@@ -6,7 +6,7 @@
         >img
             #alt = {{avatarInfo}}
             #src = {{avatarURL}}
-            #style = background-color: {{color = #fff}}
+            #style = background-color: {{color = #777}}
     >form
         @submit.prevent = eventSubmit
         >div
