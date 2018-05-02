@@ -7,6 +7,7 @@ import isBlank from './lib/is-blank';
 import makeTree from './lib/make-tree';
 import timeSince from './lib/time-since';
 import tranString from './i18n/main';
+import MinorName from './elements/minor/name.eft';
 import MinorNameLink from './elements/minor/name-link.eft';
 import TemplateComment from './elements/comment.eft';
 import TemplateForm from './elements/form.eft';
@@ -99,6 +100,12 @@ class Pomment {
                     },
                 });
                 if (isBlank(dataSorted[i].website)) {
+                    primary.mpPostName = new MinorName({
+                        $data: {
+                            content: dataSorted[i].name,
+                        },
+                    });
+                } else {
                     primary.mpPostName = new MinorNameLink({
                         $data: {
                             url: dataSorted[i].website,
