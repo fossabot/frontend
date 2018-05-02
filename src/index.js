@@ -88,6 +88,7 @@ class Pomment {
                 const primary = createComment(this, dataSorted[i], true);
                 this.templateMain.mpComments.push(primary);
             }
+            console.log(this.templateMain.mpComments);
         });
     }
 }

@@ -15,11 +15,13 @@ import TemplateComment from '../elements/comment.eft';
 const createComment = (_this, item, master) => {
     const primary = new TemplateComment({
         $data: {
-            avatarSource: avatarURL(_this.avatarPrefix, item.emailHashed),
+            id: item.id,
+            avatar: avatarURL(_this.avatarPrefix, item.emailHashed),
             absoluteTime: item.birth,
+            relativeTime: timeSince(new Date(item.birth)).value,
             content: item.content,
             masterBackground: master ? 'bg' : '',
-            relativeTime: timeSince(new Date(item.birth)).value,
+            // 以下是字段部分
             btnSubmit: tranString('btnSubmit'),
             btnSubmitting: tranString('btnSubmitting'),
             btnCancel: tranString('btnCancel'),

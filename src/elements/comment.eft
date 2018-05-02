@@ -1,6 +1,7 @@
 >div.master.{{masterBackground}}
+    #id = pomment-{{id}}
     >div.avatar
-        #style = background-image: url({{avatarSource}})
+        #style = background-image: url({{avatar}})
     >div.meta
         -mpPostName
         >time
