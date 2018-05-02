@@ -1,10 +1,5 @@
 import langIndex from './data/index';
-
-/**
- * 客户端使用的语言
- * @type {ReadonlyArray<string>}
- */
-const useLang = navigator.languages;
+import safeReplace from '../lib/safe-replace';
 
 /**
  * 源语言
@@ -21,15 +16,16 @@ const masterLang = 'en-US';
 const tranStr = (key, text = {}) => {
     // 1. 确认该用哪里的字段
     let usedLang = masterLang;
-    for (let i = 0; i < useLang.length; i += 1) {
-        if (typeof langIndex[useLang[i]] !== 'undefined' && typeof langIndex[useLang[i]][key] !== 'undefined') {
-            usedLang = useLang[i];
+    for (let i = 0; i < navigator.languages.length; i += 1) {
+        if (typeof langIndex[navigator.languages[i]] !== 'undefined' &&
+            typeof langIndex[navigator.languages[i]][key] !== 'undefined') {
+            usedLang = navigator.languages[i];
             break;
         }
     }
     // 2. 如果找不到需要的字段
     if (typeof langIndex[usedLang][key] === 'undefined') {
-        console.warn(`没有在 ${usedLang} 的翻译文件中找到字段 ${key}`);
+        console.warn(`Unable to find string \`${key}\` from \`${usedLang}\``);
         return '';
     }
     // 3. 对于 function 字段
@@ -40,8 +36,9 @@ const tranStr = (key, text = {}) => {
     const textKeys = Object.keys(text);
     let output = langIndex[usedLang][key];
     for (let i = 0; i < textKeys.length; i += 1) {
-        output = output.replace(new RegExp(`{{${textKeys}}}`, 'gm'), text[textKeys]);
+        output = safeReplace(output, `{{${textKeys}}}`, text[textKeys]);
     }
     return output;
-}
+};
+
 export default tranStr;
