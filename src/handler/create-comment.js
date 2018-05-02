@@ -1,5 +1,7 @@
+import avatarURL from '../lib/gravatar';
 import isBlank from '../lib/is-blank';
 import timeSince from '../lib/time-since';
+import tranString from '../i18n/main';
 import MinorName from '../elements/minor/name.eft';
 import MinorNameLink from '../elements/minor/name-link.eft';
 import TemplateComment from '../elements/comment.eft';
@@ -9,6 +11,7 @@ const createComment = (_this, item, master) => {
         $data: {
             avatarSource: avatarURL(_this.avatarPrefix, item.emailHashed),
             absoluteTime: item.birth,
+            content: item.content,
             masterBackground: master ? 'bg' : '',
             relativeTime: timeSince(new Date(item.birth)).value,
             btnSubmit: tranString('btnSubmit'),

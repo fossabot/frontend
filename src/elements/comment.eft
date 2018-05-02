@@ -7,8 +7,8 @@
             #data-abs = {{absoluteTime}}
             .{{relativeTime}}
     >div.content
-        >div#content
-        -mpOptions
+        .{{content}}
+        -mpOption
     >form.guest-edit
         >textarea
             #autocomplete = nope
