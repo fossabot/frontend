@@ -1,0 +1,27 @@
+>div.master
+    >div.avatar
+        #style = background-image: url({{avatarSource}})
+    >div.meta
+        -mpPostName
+        >time
+            #data-abs = {{absoluteTime}}
+            .{{relativeTime}}
+    >div.content
+        >div#content
+        -mpOptions
+    >form.guest-edit
+        >textarea
+            #autocomplete = nope
+            #required = required
+        >input.submit
+            #type = submit
+            #value = {{btnSubmit}}
+            @click = eventSubmit
+        >input.submit
+            #type = button
+            #value = {{btnSubmitting}}
+            #style = display: {{displayPseudoCancel = none}};
+        >input.cancel
+            #type = button
+            #value = {{btnCancel}}
+            @click = eventCancel
