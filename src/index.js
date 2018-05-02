@@ -86,6 +86,12 @@ class Pomment {
             console.log(dataSorted);
             for (let i = 0; i < dataSorted.length; i += 1) {
                 const primary = createComment(this, dataSorted[i], true);
+                if (dataSorted[i].slave) {
+                    const slaves = dataSorted[i].slave;
+                    for (let j = 0; j < slaves.length; j += 1) {
+                        primary.slave.push(createComment(this, slaves[j], false));
+                    }
+                }
                 this.templateMain.mpComments.push(primary);
             }
             console.log(this.templateMain.mpComments);
