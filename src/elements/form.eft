@@ -18,6 +18,7 @@
                 #class = user-info base-color
                 #placeholder = {{tipName}}
                 #required = required
+                @blur = eventMetaBlur
             >input
                 #type = email
                 %value = {{valueEmail}}
@@ -25,13 +26,15 @@
                 #class = user-info base-color
                 #placeholder = {{tipEmail}}
                 #required = required
+                @blur = eventMetaBlur
             >input
                 #type = url
-                %value = {{valueHomePage}}
+                %value = {{valueSite}}
                 #autocomplete = nope
                 #class = user-info base-color
                 #placeholder = {{tipSite}}
                 #required = required
+                @blur = eventMetaBlur
         >textarea
             %value = {{valueContent}}
             #placeholder = {{tipContent}}

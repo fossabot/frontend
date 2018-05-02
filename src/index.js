@@ -34,7 +34,22 @@ class Pomment {
         }, (err, res) => {
             const response = JSON.parse(res);
             this.templateMain.$mount({ target: this.element });
-            // 访客表单
+            // 1.   访客表单
+            // 1.1  读取存储在 localStorage 的访客信息
+            let valueName;
+            let valueEmail;
+            let valueSite;
+            try {
+                valueName = localStorage.getItem('PommentName');
+                valueEmail = localStorage.getItem('PommentEmail');
+                valueSite = localStorage.getItem('PommentSite');
+            } catch (e) {
+                console.log(`An error occurred while reading localStorage: ${e}`);
+                valueName = '';
+                valueEmail = '';
+                valueSite = '';
+            }
+            // 1.2  建立表单
             const templateForm = new TemplateForm();
             templateForm.$data = {
                 tipName: tranString('tipName'),
@@ -44,14 +59,26 @@ class Pomment {
                 btnSubmit: tranString('btnSubmit'),
                 btnSubmitting: tranString('btnSubmitting'),
                 btnCancel: tranString('btnCancel'),
+                valueName,
+                valueEmail,
+                valueSite,
             };
             this.templateMain.mpForm = templateForm;
             console.log(response);
+            templateForm.$methods.eventMetaBlur = ({ state }) => {
+                try {
+                    localStorage.setItem('PommentName', state.$data.valueName);
+                    localStorage.setItem('PommentEmail', state.$data.valueEmail);
+                    localStorage.setItem('PommentSite', state.$data.valueSite);
+                } catch (e) {
+                    console.log(`An error occurred while reading localStorage: ${e}`);
+                }
+            };
             templateForm.$methods.eventSubmit = ({ state }) => {
                 alert(`您输入了以下信息：
 用户名：${state.$data.valueName}
 邮箱：${state.$data.valueEmail}
-主页：${state.$data.valueHomePage}
+主页：${state.$data.valueSite}
 内容：${state.$data.valueContent}`);
                 return false;
             };
