@@ -1,28 +1,31 @@
->div.master.{{masterBackground}}
-    #id = pomment-{{id}}
-    >div.avatar
-        #style = background-image: url({{avatar}})
-    >div.meta
-        -mpPostName
-        >time
-            #data-abs = {{absoluteTime}}
-            .{{relativeTime}}
-    >div.content
-        .{{content}}
-        -mpOption
-    >form.guest-edit
-        >textarea
-            #autocomplete = nope
-            #required = required
-        >input.submit
-            #type = submit
-            #value = {{btnSubmit}}
-            @click = eventSubmit
-        >input.submit
-            #type = button
-            #value = {{btnSubmitting}}
-            #style = display: {{displayPseudoCancel = none}};
-        >input.cancel
-            #type = button
-            #value = {{btnCancel}}
-            @click = eventCancel
+>div.{{masterBackground}}
+    >div.master
+        #id = pomment-{{id}}
+        >div.avatar
+            #style = background-image: url({{avatar}})
+        >div.meta
+            -mpPostName
+            >time
+                #data-abs = {{absoluteTime}}
+                .{{relativeTime}}
+        >div.content
+            .{{content}}
+            -mpOption
+        >form.guest-edit
+            >textarea
+                #autocomplete = nope
+                #required = required
+            >input.submit
+                #type = submit
+                #value = {{btnSubmit}}
+                @click = eventSubmit
+            >input.submit
+                #type = button
+                #value = {{btnSubmitting}}
+                #style = display: {{displayPseudoCancel = none}};
+            >input.cancel
+                #type = button
+                #value = {{btnCancel}}
+                @click = eventCancel
+    >div.slave
+        +slave
