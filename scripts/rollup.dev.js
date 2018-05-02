@@ -1,7 +1,6 @@
 import getBuildPlan from './rollup.base';
 
 export default getBuildPlan({
-    enableUglify: false,
-    withConsole: true,
+    enableUglify: true,
     withSourceMap: true,
 });
