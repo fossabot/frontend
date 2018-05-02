@@ -3,9 +3,14 @@ import md5 from 'blueimp-md5';
 import './assets/scss/index.scss';
 import ajax from './lib/ajax';
 import avatarURL from './lib/gravatar';
+import isBlank from './lib/is-blank';
+import makeTree from './lib/make-tree';
+import timeSince from './lib/time-since';
 import tranString from './i18n/main';
-import TemplateMain from './elements/main.eft';
+import MinorNameLink from './elements/minor/name-link.eft';
+import TemplateComment from './elements/comment.eft';
 import TemplateForm from './elements/form.eft';
+import TemplateMain from './elements/main.eft';
 
 class Pomment {
     constructor(element, server, thread, {
@@ -80,6 +85,29 @@ class Pomment {
                 state.$data.avatarSource = avatarURL(this.avatarPrefix, md5(valueEmail));
             };
             // 2. 评论树处理
+            const dataSorted = makeTree(Object.values(response.content));
+            console.log(dataSorted);
+            for (let i = 0; i < dataSorted.length; i += 1) {
+                const primary = new TemplateComment({
+                    $data: {
+                        avatarSource: avatarURL(this.avatarPrefix, dataSorted[i].emailHashed),
+                        absoluteTime: dataSorted[i].birth,
+                        relativeTime: timeSince(new Date(dataSorted[i].birth)).value,
+                        btnSubmit: tranString('btnSubmit'),
+                        btnSubmitting: tranString('btnSubmitting'),
+                        btnCancel: tranString('btnCancel'),
+                    },
+                });
+                if (isBlank(dataSorted[i].website)) {
+                    primary.mpPostName = new MinorNameLink({
+                        $data: {
+                            url: dataSorted[i].website,
+                            content: dataSorted[i].name,
+                        },
+                    });
+                }
+                this.templateMain.mpComments.push(primary);
+            }
             /* templateForm.$methods.eventSubmit = ({ state }) => {
                 alert(`您输入了以下信息：
 用户名：${state.$data.valueName}
