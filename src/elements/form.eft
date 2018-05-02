@@ -16,38 +16,38 @@
                 %value = {{valueName}}
                 #autocomplete = nope
                 #class = user-info base-color
-                #placeholder = {{tipName = Name}}
+                #placeholder = {{tipName}}
                 #required = required
             >input
                 #type = email
                 %value = {{valueEmail}}
                 #autocomplete = nope
                 #class = user-info base-color
-                #placeholder = {{tipEmail = Email}}
+                #placeholder = {{tipEmail}}
                 #required = required
             >input
                 #type = url
                 %value = {{valueHomePage}}
                 #autocomplete = nope
                 #class = user-info base-color
-                #placeholder = {{tipWebsite = Website}}
+                #placeholder = {{tipSite}}
                 #required = required
         >textarea
             %value = {{valueContent}}
-            #placeholder = {{tipContent = Why not say something?}}
+            #placeholder = {{tipContent}}
             #required = required
         >input
             #class = submit
             #type = submit
-            #value = {{tipSubmit = Submit}}
+            #value = {{btnSubmit}}
         >input
             #class = submit
             #type = button
-            #value = {{tipSubmitting = Submitting ...}}
+            #value = {{btnSubmitting}}
             #style = display: {{displayPseudoCancel = none}};
         >input
             #class = cancel
             #type = button
-            #value = {{tipCancel = Cancel}}
+            #value = {{btnCancel}}
             #style = display: {{displayCancel = none}};
             @click = eventCancel

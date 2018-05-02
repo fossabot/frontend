@@ -1,5 +1,6 @@
 import './assets/scss/index.scss';
 import ajax from './lib/ajax';
+import tranString from './i18n/main';
 import TemplateMain from './elements/main.eft';
 import TemplateForm from './elements/form.eft';
 
@@ -25,16 +26,25 @@ class Pomment {
         this.url = url;
     }
     init() {
-        if (this.templateMain) {
+        if (!this.templateMain) {
             this.templateMain = new TemplateMain();
         }
         ajax({
             url: `${this.server}/v1/thread/${this.thread}/list`,
         }, (err, res) => {
             const response = JSON.parse(res);
+            this.templateMain.$mount({ target: this.element });
             // 访客表单
             const templateForm = new TemplateForm();
-            this.templateMain.$mount({ target: this.element });
+            templateForm.$data = {
+                tipName: tranString('tipName'),
+                tipEmail: tranString('tipEmail'),
+                tipSite: tranString('tipSite'),
+                tipContent: tranString('tipContent'),
+                btnSubmit: tranString('btnSubmit'),
+                btnSubmitting: tranString('btnSubmitting'),
+                btnCancel: tranString('btnCancel'),
+            };
             this.templateMain.mpForm = templateForm;
             console.log(response);
             templateForm.$methods.eventSubmit = ({ state }) => {
