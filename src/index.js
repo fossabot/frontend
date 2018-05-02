@@ -13,6 +13,34 @@ import TemplateComment from './elements/comment.eft';
 import TemplateForm from './elements/form.eft';
 import TemplateMain from './elements/main.eft';
 
+const createComment = (item) => {
+    const primary = new TemplateComment({
+        $data: {
+            avatarSource: avatarURL(this.avatarPrefix, item.emailHashed),
+            absoluteTime: item.birth,
+            relativeTime: timeSince(new Date(item.birth)).value,
+            btnSubmit: tranString('btnSubmit'),
+            btnSubmitting: tranString('btnSubmitting'),
+            btnCancel: tranString('btnCancel'),
+        },
+    });
+    if (isBlank(item.website)) {
+        primary.mpPostName = new MinorName({
+            $data: {
+                content: item.name,
+            },
+        });
+    } else {
+        primary.mpPostName = new MinorNameLink({
+            $data: {
+                url: item.website,
+                content: item.name,
+            },
+        });
+    }
+    return primary;
+};
+
 class Pomment {
     constructor(element, server, thread, {
         avatarPrefix = 'https://secure.gravatar.com/avatar/',
@@ -89,30 +117,7 @@ class Pomment {
             const dataSorted = makeTree(Object.values(response.content));
             console.log(dataSorted);
             for (let i = 0; i < dataSorted.length; i += 1) {
-                const primary = new TemplateComment({
-                    $data: {
-                        avatarSource: avatarURL(this.avatarPrefix, dataSorted[i].emailHashed),
-                        absoluteTime: dataSorted[i].birth,
-                        relativeTime: timeSince(new Date(dataSorted[i].birth)).value,
-                        btnSubmit: tranString('btnSubmit'),
-                        btnSubmitting: tranString('btnSubmitting'),
-                        btnCancel: tranString('btnCancel'),
-                    },
-                });
-                if (isBlank(dataSorted[i].website)) {
-                    primary.mpPostName = new MinorName({
-                        $data: {
-                            content: dataSorted[i].name,
-                        },
-                    });
-                } else {
-                    primary.mpPostName = new MinorNameLink({
-                        $data: {
-                            url: dataSorted[i].website,
-                            content: dataSorted[i].name,
-                        },
-                    });
-                }
+                const primary = createComment(dataSorted[i]);
                 this.templateMain.mpComments.push(primary);
             }
             /* templateForm.$methods.eventSubmit = ({ state }) => {
