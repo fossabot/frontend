@@ -127,6 +127,8 @@ class Pomment {
                     });
                 },
                 rightEvent() {
+                    templateForm.$umount();
+                    templateForm.$data.displayCancel = 'hidden';
                     _this.templateMain.mpForm = templateForm;
                     barTop.$data.hidden = 'hidden';
                 },

@@ -37,8 +37,16 @@ const createComment = (_this, form, formCallback, item, master, replyable, edita
     });
     if (replyable) {
         primary.$methods.eventReply = () => {
+            form.$data.displayCancel = 'inline';
+            form.$umount();
             primary.mpForm = form;
             formCallback(primary, item.name);
+        };
+        form.$methods.eventCancel = () => {
+            form.$data.displayCancel = 'hidden';
+            form.$umount();
+            _this.templateMain.mpForm = form;
+            _this.templateMain.mpInfoBar.$data.hidden = 'hidden';
         };
     }
     if (isBlank(item.website)) {
