@@ -125,7 +125,6 @@ class Pomment {
                         top: component.$element.offsetTop,
                         behavior: 'smooth',
                     });
-
                 },
                 rightEvent() {
                     _this.templateMain.mpForm = templateForm;
