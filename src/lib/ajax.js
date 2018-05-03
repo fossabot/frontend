@@ -4,25 +4,24 @@
  * @param {string}      method = 'POST' 请求协议
  * @param {object}      headers = {}    请求头部
  * @param {object}      data = null     请求中所提交的数据
- * @param {function}    callback        回调函数
- * @return {undefined}
+ * @return {Promise}
  */
 const ajax = ({
     url,
     method = 'POST',
     headers = {},
     data = null,
-} = {}, callback = () => {}) => {
+} = {}) => new Promise((resolve, reject) => {
     /**
      * @type {XMLHttpRequest}
      */
     const request = new XMLHttpRequest();
     request.open(method, url, true);
     request.onload = () => {
-        callback(request.status, request.responseText);
+        resolve(request);
     };
     request.onerror = () => {
-        callback(-1, null);
+        reject(new Error('Connection error'));
     };
     if (headers) {
         console.log(headers);
@@ -37,6 +36,6 @@ const ajax = ({
     } else {
         request.send();
     }
-};
+});
 
 export default ajax;

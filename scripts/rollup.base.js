@@ -13,6 +13,7 @@ import fileSize from 'rollup-plugin-filesize';
 import json from 'rollup-plugin-json';
 import eft from 'rollup-plugin-eft';
 import replace from 'rollup-plugin-replace';
+import nodent from 'rollup-plugin-nodent';
 
 const getBuildPlan = ({
     enableUglify = true,
@@ -53,6 +54,10 @@ const getBuildPlan = ({
         }),
         json(),
         eft(),
+        nodent({
+            promises: true,
+            noRuntime: true,
+        }),
         buble({
             transforms: {
                 modules: false,

@@ -34,6 +34,10 @@ acorn-dynamic-import@^3.0.0:
   dependencies:
     acorn "^5.0.0"
 
+acorn-es7-plugin@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/acorn-es7-plugin/-/acorn-es7-plugin-1.1.7.tgz#f2ee1f3228a90eead1245f9ab1922eb2e71d336b"
+
 acorn-jsx@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-3.0.1.tgz#afdf9488fb1ecefc8348f6fb22f464e32a58b36b"
@@ -46,13 +50,13 @@ acorn-jsx@^4.1.1:
   dependencies:
     acorn "^5.0.3"
 
+acorn@>=2.5.2, acorn@^5.0.0, acorn@^5.0.3, acorn@^5.4.1, acorn@^5.5.0:
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.5.3.tgz#f473dd47e0277a08e28e9bec5aeeb04751f0b8c9"
+
 acorn@^3.0.4:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-3.3.0.tgz#45e37fb39e8da3f25baee3ff5369e2bb5f22017a"
-
-acorn@^5.0.0, acorn@^5.0.3, acorn@^5.4.1, acorn@^5.5.0:
-  version "5.5.3"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.5.3.tgz#f473dd47e0277a08e28e9bec5aeeb04751f0b8c9"
 
 ajv-keywords@^2.1.0:
   version "2.1.1"
@@ -1914,6 +1918,19 @@ node-sass@^4.9.0:
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
 
+nodent-compiler@^3.1.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/nodent-compiler/-/nodent-compiler-3.2.6.tgz#ce53314bce7b18f136601068886b0379b8d372a8"
+  dependencies:
+    acorn ">=2.5.2"
+    acorn-es7-plugin "^1.1.7"
+    nodent-transform "^3.2.6"
+    source-map "^0.5.7"
+
+nodent-transform@^3.2.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/nodent-transform/-/nodent-transform-3.2.6.tgz#b782edc0e2aafa6d29df0333b36cd00af757c36d"
+
 "nopt@2 || 3":
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/nopt/-/nopt-3.0.6.tgz#c6465dbf08abcd4db359317f79ac68a646b28ff9"
@@ -2765,6 +2782,14 @@ rollup-plugin-node-resolve@^3.3.0:
     is-module "^1.0.0"
     resolve "^1.1.6"
 
+rollup-plugin-nodent@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-nodent/-/rollup-plugin-nodent-0.2.2.tgz#73e9b974b5ac375eb298495541fc72b095784fac"
+  dependencies:
+    acorn-dynamic-import "^3.0.0"
+    nodent-compiler "^3.1.6"
+    rollup-pluginutils "^2.0.1"
+
 rollup-plugin-postcss@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/rollup-plugin-postcss/-/rollup-plugin-postcss-1.6.1.tgz#8251104b9d9eedacbb56e87fb8fb9f226daaf716"
@@ -2921,7 +2946,7 @@ sort-keys@^1.0.0:
   dependencies:
     is-plain-obj "^1.0.0"
 
-source-map@0.5.x, source-map@^0.5.3, source-map@^0.5.6:
+source-map@0.5.x, source-map@^0.5.3, source-map@^0.5.6, source-map@^0.5.7:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
 

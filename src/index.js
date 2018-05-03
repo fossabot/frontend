@@ -30,73 +30,80 @@ class Pomment {
         this.title = title;
         this.url = url;
     }
-    init() {
+    async init() {
+        // 0.   前期准备
+        // 0.1  环境初始化
         if (!this.templateMain) {
             this.templateMain = new TemplateMain();
         }
-        ajax({
-            url: `${this.server}/v1/thread/${this.thread}/list`,
-        }, (err, res) => {
-            const response = JSON.parse(res);
-            console.log(response);
-            this.templateMain.$mount({ target: this.element });
-            // 1.   访客表单
-            // 1.1  读取存储在 localStorage 的访客信息
-            let valueName;
-            let valueEmail;
-            let valueSite;
+        this.templateMain.$mount({ target: this.element });
+        // 0.2  内容加载
+        let request;
+        try {
+            request = await ajax({
+                url: `${this.server}/v1/thread/${this.thread}/list`,
+            });
+        } catch (e) {
+            alert(`Connection error! ${e}`);
+        }
+        const response = JSON.parse(request.responseText);
+        console.info('[Pomment]', response);
+        // 1.   访客表单
+        // 1.1  读取存储在 localStorage 的访客信息
+        let valueName;
+        let valueEmail;
+        let valueSite;
+        try {
+            valueName = localStorage.getItem('PommentName') || '';
+            valueEmail = localStorage.getItem('PommentEmail') || '';
+            valueSite = localStorage.getItem('PommentSite') || '';
+        } catch (e) {
+            console.error(`An error occurred while reading localStorage: ${e}`);
+            valueName = '';
+            valueEmail = '';
+            valueSite = '';
+        }
+        // 1.2  建立表单
+        const templateForm = new TemplateForm();
+        templateForm.$data = {
+            tipName: tranString('tipName'),
+            tipEmail: tranString('tipEmail'),
+            tipSite: tranString('tipSite'),
+            tipContent: tranString('tipContent'),
+            btnSubmit: tranString('btnSubmit'),
+            btnSubmitting: tranString('btnSubmitting'),
+            btnCancel: tranString('btnCancel'),
+            valueName,
+            valueEmail,
+            valueSite,
+            avatarSource: avatarURL(this.avatarPrefix, md5(valueEmail)),
+        };
+        this.templateMain.mpForm = templateForm;
+        templateForm.$methods.eventMetaBlur = ({ state }) => {
+            ({ valueName, valueEmail, valueSite } = state.$data);
             try {
-                valueName = localStorage.getItem('PommentName') || '';
-                valueEmail = localStorage.getItem('PommentEmail') || '';
-                valueSite = localStorage.getItem('PommentSite') || '';
+                localStorage.setItem('PommentName', valueName);
+                localStorage.setItem('PommentEmail', valueEmail);
+                localStorage.setItem('PommentSite', valueSite);
             } catch (e) {
-                console.log(`An error occurred while reading localStorage: ${e}`);
-                valueName = '';
-                valueEmail = '';
-                valueSite = '';
+                console.error(`An error occurred while saving localStorage: ${e}`);
             }
-            // 1.2  建立表单
-            const templateForm = new TemplateForm();
-            templateForm.$data = {
-                tipName: tranString('tipName'),
-                tipEmail: tranString('tipEmail'),
-                tipSite: tranString('tipSite'),
-                tipContent: tranString('tipContent'),
-                btnSubmit: tranString('btnSubmit'),
-                btnSubmitting: tranString('btnSubmitting'),
-                btnCancel: tranString('btnCancel'),
-                valueName,
-                valueEmail,
-                valueSite,
-                avatarSource: avatarURL(this.avatarPrefix, md5(valueEmail)),
-            };
-            this.templateMain.mpForm = templateForm;
-            templateForm.$methods.eventMetaBlur = ({ state }) => {
-                ({ valueName, valueEmail, valueSite } = state.$data);
-                try {
-                    localStorage.setItem('PommentName', valueName);
-                    localStorage.setItem('PommentEmail', valueEmail);
-                    localStorage.setItem('PommentSite', valueSite);
-                } catch (e) {
-                    console.log(`An error occurred while saving localStorage: ${e}`);
+            state.$data.avatarSource = avatarURL(this.avatarPrefix, md5(valueEmail));
+        };
+        // 2.   评论树处理
+        const dataSorted = makeTree(Object.values(response.content));
+        console.log(dataSorted);
+        for (let i = 0; i < dataSorted.length; i += 1) {
+            const primary = createComment(this, dataSorted[i], true, !response.locked);
+            if (dataSorted[i].slave) {
+                const slaves = dataSorted[i].slave;
+                for (let j = 0; j < slaves.length; j += 1) {
+                    primary.slave.push(createComment(this, slaves[j], false, !response.locked));
                 }
-                state.$data.avatarSource = avatarURL(this.avatarPrefix, md5(valueEmail));
-            };
-            // 2.   评论树处理
-            const dataSorted = makeTree(Object.values(response.content));
-            console.log(dataSorted);
-            for (let i = 0; i < dataSorted.length; i += 1) {
-                const primary = createComment(this, dataSorted[i], true, !response.locked);
-                if (dataSorted[i].slave) {
-                    const slaves = dataSorted[i].slave;
-                    for (let j = 0; j < slaves.length; j += 1) {
-                        primary.slave.push(createComment(this, slaves[j], false, !response.locked));
-                    }
-                }
-                this.templateMain.mpComments.push(primary);
             }
-            console.log(this.templateMain.mpComments);
-        });
+            this.templateMain.mpComments.push(primary);
+        }
+        console.info('[Pomment]', this.templateMain.mpComments);
     }
 }
 
