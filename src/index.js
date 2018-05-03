@@ -81,7 +81,7 @@ class Pomment {
                 }
                 state.$data.avatarSource = avatarURL(this.avatarPrefix, md5(valueEmail));
             };
-            // 2. 评论树处理
+            // 2.   评论树处理
             const dataSorted = makeTree(Object.values(response.content));
             console.log(dataSorted);
             for (let i = 0; i < dataSorted.length; i += 1) {
