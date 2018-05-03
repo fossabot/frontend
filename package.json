@@ -12,8 +12,7 @@
     "clean": "node ./scripts/cleanup.js"
   },
   "dependencies": {
-    "blueimp-md5": "^2.10.0",
-    "ef.js": "^0.7.2"
+    "blueimp-md5": "^2.10.0"
   },
   "devDependencies": {
     "autoprefixer": "^8.4.1",
