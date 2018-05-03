@@ -1,0 +1,29 @@
+.pomment {
+    input[type=text], input[type=button], input[type=submit], textarea {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border-radius: 0;
+    }
+    .clearfix {
+        zoom: 1;
+        &:after {
+            clear: both;
+        }
+        &:after, &:before {
+            content: " ";
+            display: table;
+        }
+        .left {
+            float: left;
+        }
+        .right {
+            float: right;
+        }
+    }
+    .hidden {
+        display: none;
+    }
+    a {
+        cursor: pointer;
+    }
+}
