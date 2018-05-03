@@ -3,6 +3,7 @@ import md5 from 'blueimp-md5';
 import './assets/scss/index.scss';
 import ajax from './lib/ajax';
 import avatarURL from './lib/gravatar';
+import createBar from './handler/create-bar';
 import createComment from './handler/create-comment';
 import makeTree from './lib/make-tree';
 import tranString from './i18n/main';
@@ -38,13 +39,17 @@ class Pomment {
         }
         this.templateMain.$mount({ target: this.element });
         // 0.2  内容加载
+        const barTop = createBar(this, {
+            leftText: tranString('msgLoading'),
+        });
+        this.templateMain.mpInfoBar = barTop;
         let request;
         try {
             request = await ajax({
                 url: `${this.server}/v1/thread/${this.thread}/list`,
             });
         } catch (e) {
-            alert(`Connection error! ${e}`);
+            console.info('[Pomment]', `${e}`);
         }
         const response = JSON.parse(request.responseText);
         console.info('[Pomment]', response);
