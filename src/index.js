@@ -38,6 +38,7 @@ class Pomment {
             url: `${this.server}/v1/thread/${this.thread}/list`,
         }, (err, res) => {
             const response = JSON.parse(res);
+            console.log(response);
             this.templateMain.$mount({ target: this.element });
             // 1.   访客表单
             // 1.1  读取存储在 localStorage 的访客信息
@@ -85,11 +86,11 @@ class Pomment {
             const dataSorted = makeTree(Object.values(response.content));
             console.log(dataSorted);
             for (let i = 0; i < dataSorted.length; i += 1) {
-                const primary = createComment(this, dataSorted[i], true);
+                const primary = createComment(this, dataSorted[i], true, !response.locked);
                 if (dataSorted[i].slave) {
                     const slaves = dataSorted[i].slave;
                     for (let j = 0; j < slaves.length; j += 1) {
-                        primary.slave.push(createComment(this, slaves[j], false));
+                        primary.slave.push(createComment(this, slaves[j], false, !response.locked));
                     }
                 }
                 this.templateMain.mpComments.push(primary);
