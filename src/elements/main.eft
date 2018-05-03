@@ -1,5 +1,5 @@
->div
-    #class = pomment
+>div.pomment
     -mpInfoBar
     -mpForm
-    +mpComments
+    >div.container
+        +mpComments
