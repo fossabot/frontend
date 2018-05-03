@@ -65,7 +65,7 @@ class Pomment {
         }
         const response = JSON.parse(request.responseText);
         console.info('[Pomment]', response);
-        barTop.$destroy();
+        barTop.$data.hidden = 'hidden';
         // 1.   访客表单
         // 1.1  读取存储在 localStorage 的访客信息
         let valueName;
