@@ -7,6 +7,7 @@ import createBar from './handler/create-bar';
 import createComment from './handler/create-comment';
 import makeTree from './lib/make-tree';
 import tranString from './i18n/main';
+import updateBar from './handler/update-bar';
 import TemplateForm from './elements/form.eft';
 import TemplateMain from './elements/main.eft';
 
@@ -34,6 +35,7 @@ class Pomment {
     async init() {
         // 0.   前期准备
         // 0.1  环境初始化
+        const _this = this;
         if (!this.templateMain) {
             this.templateMain = new TemplateMain();
         }
@@ -50,17 +52,19 @@ class Pomment {
             });
         } catch (e) {
             console.info('[Pomment]', `${e}`);
+            const leftText = tranString('errLoadFailed');
+            const rightText = tranString('btnRetry');
+            barTop.mpRichInfo.$data = {
+                leftText,
+            };
             barTop.$data = {
                 barStyle: 'error',
-                rightText: tranString('btnRetry'),
-            }
+                rightText,
+            };
             barTop.$methods.eventClick = () => {
                 barTop.$destroy();
                 this.init();
-            }
-            barTop.mpRichInfo.$data = {
-                leftText: tranString('errLoadFailed'),
-            }
+            };
             return false;
         }
         const response = JSON.parse(request.responseText);
@@ -108,20 +112,42 @@ class Pomment {
             }
             state.$data.avatarSource = avatarURL(this.avatarPrefix, md5(valueEmail));
         };
+        const formStatusUpdate = (component, name) => {
+            barTop.$data.hidden = '';
+            updateBar(barTop, {
+                type: 'link',
+                leftText: tranString('msgReply', {
+                    name,
+                }),
+                rightText: tranString('btnCancel'),
+                leftEvent() {
+                    window.scroll({
+                        top: component.$element.offsetTop,
+                        behavior: 'smooth',
+                    });
+
+                },
+                rightEvent() {
+                    _this.templateMain.mpForm = templateForm;
+                    barTop.$data.hidden = 'hidden';
+                },
+            });
+        };
         // 2.   评论树处理
         const dataSorted = makeTree(Object.values(response.content));
         console.log(dataSorted);
         for (let i = 0; i < dataSorted.length; i += 1) {
-            const primary = createComment(this, templateForm, dataSorted[i], true, !response.locked);
+            const primary = createComment(this, templateForm, formStatusUpdate, dataSorted[i], true, !response.locked);
             if (dataSorted[i].slave) {
                 const slaves = dataSorted[i].slave;
                 for (let j = 0; j < slaves.length; j += 1) {
-                    primary.slave.push(createComment(this, templateForm, slaves[j], false, !response.locked));
+                    primary.slave.push(createComment(this, templateForm, formStatusUpdate, slaves[j], false, !response.locked));
                 }
             }
             this.templateMain.mpComments.push(primary);
         }
         console.info('[Pomment]', this.templateMain.mpComments);
+        return false;
     }
 }
 

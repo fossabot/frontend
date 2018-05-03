@@ -7,7 +7,6 @@ export default {
     msgLoading: 'Loading Pomment ...',
     msgPostSuccess: 'Post successfully submitted.',
     msgReply: "You are replying {{name}}'s post.",
-    msgReplyCancel: 'Cancel',
     tipAvatar: '{{name}}\'s avatar',
     tipContent: 'Why not say something?',
     tipEmail: 'Email',

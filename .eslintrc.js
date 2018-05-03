@@ -4,7 +4,9 @@ module.exports = {
         "no-alert": "off",
         "no-console": "off",
         "no-param-reassign": "off",
-        "indent": ["error", "SwitchCase", 4],
+        "no-underscore-dangle": 'off',
+        "max-len": ["error", 140],
+        "indent": ["error", 4],
     },
     "env": {
         "browser": true,

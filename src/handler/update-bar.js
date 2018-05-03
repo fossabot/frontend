@@ -1,25 +1,23 @@
-import TemplateBar from '../elements/bar.eft';
 import MinorBarText from '../elements/minor/bar-text.eft';
 import MinorBarLink from '../elements/minor/bar-link.eft';
 
-const createBar = (_this, {
+const updateBar = (bar, {
     barStyle = 'info',
     type = 'text',
     leftText = '',
     rightText = '',
     leftEvent = () => {},
-} = {}) => {
-    const bar = new TemplateBar({
-        $data: {
-            barStyle,
-            rightText,
-        },
-    });
-    if (rightText === '') {
-        bar.$methods.eventClick = () => {
-            bar.$destroy();
-        };
-    }
+    rightEvent = () => {},
+}) => {
+    bar.mpRichInfo.$data = {
+        leftText,
+    };
+    bar.$data = {
+        barStyle,
+        rightText,
+    };
+    bar.$methods.eventClick = rightEvent;
+    bar.mpRichInfo.$destroy();
     switch (type) {
     case 'text': {
         bar.mpRichInfo = new MinorBarText({
@@ -42,7 +40,7 @@ const createBar = (_this, {
         throw new Error('You specified an invaild message type');
     }
     }
-    return bar;
+    return false;
 };
 
-export default createBar;
+export default updateBar;
