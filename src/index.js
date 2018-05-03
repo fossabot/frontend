@@ -77,7 +77,7 @@ class Pomment {
                     localStorage.setItem('PommentEmail', valueEmail);
                     localStorage.setItem('PommentSite', valueSite);
                 } catch (e) {
-                    console.log(`An error occurred while reading localStorage: ${e}`);
+                    console.log(`An error occurred while saving localStorage: ${e}`);
                 }
                 state.$data.avatarSource = avatarURL(this.avatarPrefix, md5(valueEmail));
             };
