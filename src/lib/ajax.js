@@ -21,7 +21,7 @@ const ajax = ({
         resolve(request);
     };
     request.onerror = () => {
-        reject(new Error('Connection error'));
+        reject(new Error('An error occurred during the transaction'));
     };
     if (headers) {
         console.log(headers);
