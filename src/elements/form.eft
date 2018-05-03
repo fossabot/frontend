@@ -34,10 +34,10 @@
         >input.submit
             #type = submit
             #value = {{btnSubmit}}
-        >input.submit.displayPseudoSubmit
+        >input.submit.{{displayPseudoSubmit}}
             #type = button
             #value = {{btnSubmitting}}
-        >input.cancel.displayCancel
+        >input.cancel.{{displayCancel}}
             #type = button
             #value = {{btnCancel}}
             @click = eventCancel

@@ -99,6 +99,8 @@ class Pomment {
             valueEmail,
             valueSite,
             avatarSource: avatarURL(this.avatarPrefix, md5(valueEmail)),
+            displayCancel: 'hidden',
+            displayPseudoSubmit: 'hidden',
         };
         this.templateMain.mpForm = templateForm;
         templateForm.$methods.eventMetaBlur = ({ state }) => {
