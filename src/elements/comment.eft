@@ -11,9 +11,9 @@
         >div.content
             .{{content}}
             >hr
-            >a
+            >a.{{showReply}}
                 .{{btnReply}}
-            >span.{{showEdit}}
+            >span.barrier.{{showEdit}}
                 .  |  
             >a.{{showEdit}}
                 .{{btnEdit}}

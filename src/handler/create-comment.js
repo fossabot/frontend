@@ -8,11 +8,13 @@ import TemplateComment from '../elements/comment.eft';
 
 /**
  * 构建评论
- * @param {*} _this         继承自 Pomment 类的 this
- * @param {object} item     评论信息
- * @param {boolean} master  是不是第一层评论
+ * @param {object}  _this       继承自 Pomment 类的 this
+ * @param {object}  item        评论信息
+ * @param {boolean} master      是不是第一层评论
+ * @param {boolean} replyable   可以被回复
+ * @param {boolean} editable    可以被编辑
  */
-const createComment = (_this, item, master) => {
+const createComment = (_this, item, master, replyable, editable) => {
     const primary = new TemplateComment({
         $data: {
             id: item.id,

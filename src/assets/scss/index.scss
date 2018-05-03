@@ -44,7 +44,7 @@
     }
     .focus {
         background-color: #e1f5fe !important;
-        time, .bottom {
+        time, .barrier {
             color: #afc2cb !important;
         }
         hr {
@@ -103,15 +103,15 @@
                 margin-left: 10px;
                 color: #d0d0d0;
             }
-            .bottom {
-                color: #d0d0d0;
-            }
         }
         .guest-edit {
             display: none;
         }
         .content {
             white-space: pre-wrap;
+            .barrier {
+                color: #d0d0d0;
+            }
         }
         .content, form, .guest-edit {
             margin-left: 68px;
