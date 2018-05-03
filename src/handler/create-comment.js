@@ -9,12 +9,13 @@ import TemplateComment from '../elements/comment.eft';
 /**
  * 构建评论
  * @param {object}  _this       继承自 Pomment 类的 this
+ * @param {object}  form        表单本体
  * @param {object}  item        评论信息
  * @param {boolean} master      是不是第一层评论
  * @param {boolean} replyable   可以被回复
  * @param {boolean} editable    可以被编辑
  */
-const createComment = (_this, item, master, replyable, editable = false) => {
+const createComment = (_this, form, item, master, replyable, editable = false) => {
     const primary = new TemplateComment({
         $data: {
             id: item.id,
@@ -33,6 +34,11 @@ const createComment = (_this, item, master, replyable, editable = false) => {
             btnCancel: tranString('btnCancel'),
         },
     });
+    if (replyable) {
+        primary.$methods.eventReply = () => {
+            primary.mpForm = form;
+        };
+    }
     if (isBlank(item.website)) {
         primary.mpPostName = new MinorName({
             $data: {

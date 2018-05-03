@@ -112,11 +112,11 @@ class Pomment {
         const dataSorted = makeTree(Object.values(response.content));
         console.log(dataSorted);
         for (let i = 0; i < dataSorted.length; i += 1) {
-            const primary = createComment(this, dataSorted[i], true, !response.locked);
+            const primary = createComment(this, templateForm, dataSorted[i], true, !response.locked);
             if (dataSorted[i].slave) {
                 const slaves = dataSorted[i].slave;
                 for (let j = 0; j < slaves.length; j += 1) {
-                    primary.slave.push(createComment(this, slaves[j], false, !response.locked));
+                    primary.slave.push(createComment(this, templateForm, slaves[j], false, !response.locked));
                 }
             }
             this.templateMain.mpComments.push(primary);

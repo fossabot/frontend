@@ -12,10 +12,12 @@
             .{{content}}
             >hr
             >a.{{showReply}}
+                @click = eventReply
                 .{{btnReply}}
             >span.barrier.{{showEdit}}
                 .  |  
             >a.{{showEdit}}
+                @click = eventEdit
                 .{{btnEdit}}
         >form.guest-edit
             >textarea
@@ -33,5 +35,6 @@
                 #type = button
                 #value = {{btnCancel}}
                 @click = eventCancel
+    -mpForm
     >div.slave
         +slave
