@@ -9,6 +9,7 @@ import TemplateComment from '../elements/comment.eft';
 /**
  * 构建评论
  * @param {object}      _this           继承自 Pomment 类的 this
+ * @param {object}      main            主元素本体
  * @param {object}      form            表单本体
  * @param {function}    formCallback    表单移动事件回调
  * @param {object}      item            评论信息
@@ -16,7 +17,7 @@ import TemplateComment from '../elements/comment.eft';
  * @param {boolean}     replyable       可以被回复
  * @param {boolean}     editable        可以被编辑
  */
-const createComment = (_this, form, formCallback, item, master, replyable, editable = false) => {
+const createComment = (_this, main, form, formCallback, item, master, replyable, editable = false) => {
     const primary = new TemplateComment({
         $data: {
             id: item.id,
@@ -45,8 +46,8 @@ const createComment = (_this, form, formCallback, item, master, replyable, edita
         form.$methods.eventCancel = () => {
             form.$data.displayCancel = 'hidden';
             form.$umount();
-            _this.templateMain.mpForm = form;
-            _this.templateMain.mpInfoBar.$data.hidden = 'hidden';
+            main.mpForm = form;
+            main.mpInfoBar.$data.hidden = 'hidden';
         };
     }
     if (isBlank(item.website)) {
