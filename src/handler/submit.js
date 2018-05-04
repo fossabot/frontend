@@ -41,22 +41,20 @@ const submit = async (_this, main, form, formCallback) => {
             },
         });
     } catch (e) {
-        bar = createBar(_this, {
+        form.mpInfoBar = createBar(_this, {
             barStyle: 'error',
             leftText: tranString('errSubmitFailed'),
         });
-        form.mpInfoBar = bar;
         unFreeze(form);
         return false;
     }
     const response = JSON.parse(request.responseText);
     console.log('[Pomment]', response);
     if (response.status === 'success') {
-        bar = createBar(_this, {
+        form.mpInfoBar = createBar(_this, {
             barStyle: 'success',
             leftText: tranString('msgPostSuccess'),
         });
-        form.mpInfoBar = bar;
         const comment = createComment(
             _this,
             main,
@@ -65,8 +63,8 @@ const submit = async (_this, main, form, formCallback) => {
             response.content,
             true,
             true,
-            true,
         );
+        comment.$data.focus = 'focus';
         if (_this.position < 0) {
             main.mpComments.unshift(comment);
         } else {
@@ -102,6 +100,28 @@ const submit = async (_this, main, form, formCallback) => {
             unFreeze(form);
         }
         // main.mpComments
+    } else {
+        let leftText;
+        if (response.info.indexOf('bad') === 0) {
+            // 请在提交表单时提供符合要求的信息
+            leftText = tranString('errBadInfo');
+        } else if (response.info.indexOf('disallowed') === 0) {
+            // 您提供的信息存在不适当的内容
+            leftText = tranString('errDisallowedInfo');
+        } else if (response.info === 'locked') {
+            // 主题被管理员锁定
+            leftText = tranString('errLocked');
+        } else {
+            // 发生了未预料的错误
+            leftText = tranString('errOther', {
+                info: response.info,
+            });
+        }
+        form.mpInfoBar = createBar(_this, {
+            barStyle: 'error',
+            leftText,
+        });
+        unFreeze(form);
     }
     return false;
 };

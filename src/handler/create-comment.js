@@ -19,7 +19,7 @@ import TemplateComment from '../elements/comment.eft';
  * @param {boolean}     replyable       可以被回复
  * @param {boolean}     editable        可以被编辑
  */
-const createComment = (_this, main, form, formCallback, item, master, replyable, editable = false) => {
+const createComment = (_this, main, form, formCallback, item, master, replyable) => {
     const primary = new TemplateComment({
         $data: {
             id: item.id,
@@ -29,7 +29,6 @@ const createComment = (_this, main, form, formCallback, item, master, replyable,
             content: item.content,
             masterBackground: master ? 'bg' : '',
             showReply: replyable ? '' : 'hidden',
-            showEdit: editable ? '' : 'hidden',
             // 以下是字段部分
             btnEdit: tranString('btnEdit'),
             btnReply: tranString('btnReply'),
