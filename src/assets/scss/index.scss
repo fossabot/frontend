@@ -181,7 +181,7 @@
         &.disabled {
             opacity: 0.4;
             cursor: not-allowed;
-            .form, .guest-edit {
+            form, .guest-edit {
                 pointer-events: none;
             }
         }
