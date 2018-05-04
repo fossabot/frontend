@@ -1,3 +1,5 @@
+import tranString from '../i18n/main';
+
 import TemplateBar from '../elements/bar.eft';
 import MinorBarText from '../elements/minor/bar-text.eft';
 import MinorBarLink from '../elements/minor/bar-link.eft';
@@ -16,6 +18,7 @@ const createBar = (_this, {
         },
     });
     if (rightText === '') {
+        bar.$data.rightText = tranString('btnClose');
         bar.$methods.eventClick = () => {
             bar.$destroy();
         };
@@ -39,7 +42,7 @@ const createBar = (_this, {
         break;
     }
     default: {
-        throw new Error('You specified an invaild message type');
+        throw new ReferenceError('You specified an invaild message type');
     }
     }
     return bar;
