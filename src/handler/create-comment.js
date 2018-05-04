@@ -1,3 +1,5 @@
+import md5 from 'blueimp-md5';
+
 import avatarURL from '../lib/gravatar';
 import isBlank from '../lib/is-blank';
 import timeSince from '../lib/time-since';
@@ -21,7 +23,7 @@ const createComment = (_this, main, form, formCallback, item, master, replyable,
     const primary = new TemplateComment({
         $data: {
             id: item.id,
-            avatar: avatarURL(_this.avatarPrefix, item.emailHashed),
+            avatar: avatarURL(_this.avatarPrefix, item.emailHashed ? item.emailHashed : md5(item.email)),
             absoluteTime: item.birth,
             relativeTime: timeSince(new Date(item.birth)).value,
             content: item.content,

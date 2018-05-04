@@ -6,8 +6,8 @@ const updateBar = (bar, {
     type = 'text',
     leftText = '',
     rightText = '',
-    leftEvent = () => {},
-    rightEvent = () => {},
+    leftEvent,
+    rightEvent,
 }) => {
     bar.mpRichInfo.$data = {
         leftText,
@@ -16,7 +16,7 @@ const updateBar = (bar, {
         barStyle,
         rightText,
     };
-    bar.$methods.eventClick = rightEvent;
+    if (rightEvent) bar.$methods.eventClick = rightEvent;
     bar.mpRichInfo.$destroy();
     switch (type) {
     case 'text': {
@@ -33,11 +33,11 @@ const updateBar = (bar, {
                 leftText,
             },
         });
-        bar.mpRichInfo.$methods.eventClick = leftEvent;
+        if (leftEvent) bar.mpRichInfo.$methods.eventClick = leftEvent;
         break;
     }
     default: {
-        throw new Error('You specified an invaild message type');
+        throw new ReferenceError('You specified an invaild message type');
     }
     }
     return false;

@@ -138,7 +138,6 @@ class Pomment {
             }
             state.$data.avatarSource = avatarURL(this.avatarPrefix, md5(valueEmail));
         };
-        templateForm.$methods.eventSubmit = () => submit(this, templateMain, templateForm);
         const formStatusUpdate = (component, name) => {
             barTop.$data.hidden = '';
             updateBar(barTop, {
@@ -162,6 +161,7 @@ class Pomment {
                 },
             });
         };
+        templateForm.$methods.eventSubmit = () => submit(this, templateMain, templateForm, formStatusUpdate);
         // 2.   评论树处理
         const dataSorted = makeTree(Object.values(response.content));
         console.log(dataSorted);
