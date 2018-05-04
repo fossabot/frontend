@@ -37,6 +37,7 @@ const getBuildPlan = ({
         }),
         postcss({
             extract: extractCSS,
+            inject: false,
             plugins: [
                 autoprefixer(),
                 clean(),

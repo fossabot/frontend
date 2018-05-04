@@ -1,6 +1,5 @@
 import md5 from 'blueimp-md5';
 
-import './assets/scss/index.scss';
 import ajax from './lib/ajax';
 import avatarURL from './lib/gravatar';
 import createBar from './handler/create-bar';
@@ -8,14 +7,19 @@ import createComment from './handler/create-comment';
 import makeTree from './lib/make-tree';
 import tranString from './i18n/main';
 import updateBar from './handler/update-bar';
+
+import CSString from './assets/scss/index.scss';
 import TemplateForm from './elements/form.eft';
 import TemplateMain from './elements/main.eft';
+
+const styleIdentify = `pomment-${md5(Math.random()).slice(0, 8)}`;
 
 class Pomment {
     constructor(element, server, thread, {
         avatarPrefix = 'https://secure.gravatar.com/avatar/',
         title = document.title,
         url = document.location.href,
+        injectCSS = true,
     } = {}) {
         if (!(element instanceof Element)) {
             this.element = document.querySelector(element);
@@ -24,6 +28,16 @@ class Pomment {
         }
         if (typeof this.element.dataset.pomment !== 'undefined') {
             throw new Error('The element is already loaded as Pomment instance');
+        }
+        if (injectCSS) {
+            if (document.getElementById(styleIdentify)) {
+                console.warn('[Pomment]', 'The built-in CSS is already injected. Ignoring.');
+            } else {
+                const container = document.createElement('style');
+                container.textContent = CSString;
+                document.head.appendChild(container);
+                console.info('[Pomment]', 'Built-in CSS injected.');
+            }
         }
         this.element.dataset.pomment = 'loaded';
         this.server = server;
