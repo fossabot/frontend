@@ -34,9 +34,10 @@ class Pomment {
                 console.warn('[Pomment]', 'The built-in CSS is already injected. Ignoring.');
             } else {
                 const container = document.createElement('style');
+                container.id = styleIdentify;
                 container.textContent = CSString;
                 document.head.appendChild(container);
-                console.info('[Pomment]', 'Built-in CSS injected.');
+                console.log('[Pomment]', 'Built-in CSS injected.');
             }
         }
         this.element.dataset.pomment = 'loaded';
