@@ -42,12 +42,14 @@ const createComment = (_this, main, form, formCallback, item, master, replyable,
             form.$umount();
             primary.mpForm = form;
             formCallback(primary, item.name);
+            _this.position = item.id;
         };
         form.$methods.eventCancel = () => {
             form.$data.displayCancel = 'hidden';
             form.$umount();
             main.mpForm = form;
             main.mpInfoBar.$data.hidden = 'hidden';
+            _this.position = -1;
         };
     }
     if (isBlank(item.website)) {

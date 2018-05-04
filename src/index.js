@@ -5,6 +5,7 @@ import avatarURL from './lib/gravatar';
 import createBar from './handler/create-bar';
 import createComment from './handler/create-comment';
 import makeTree from './lib/make-tree';
+import submit from './handler/submit';
 import tranString from './i18n/main';
 import updateBar from './handler/update-bar';
 
@@ -48,6 +49,7 @@ class Pomment {
             }
         }
         this.element.dataset.pomment = 'loaded';
+        this.position = -1;
         this.server = server;
         this.thread = thread;
         this.avatarPrefix = avatarPrefix;
@@ -123,7 +125,6 @@ class Pomment {
             valueSite,
             avatarSource: avatarURL(this.avatarPrefix, md5(valueEmail)),
             displayCancel: 'hidden',
-            displayPseudoSubmit: 'hidden',
         };
         templateMain.mpForm = templateForm;
         templateForm.$methods.eventMetaBlur = ({ state }) => {
@@ -137,6 +138,7 @@ class Pomment {
             }
             state.$data.avatarSource = avatarURL(this.avatarPrefix, md5(valueEmail));
         };
+        templateForm.$methods.eventSubmit = () => submit(this, templateMain, templateForm);
         const formStatusUpdate = (component, name) => {
             barTop.$data.hidden = '';
             updateBar(barTop, {
@@ -156,6 +158,7 @@ class Pomment {
                     templateForm.$data.displayCancel = 'hidden';
                     templateMain.mpForm = templateForm;
                     barTop.$data.hidden = 'hidden';
+                    this.position = -1;
                 },
             });
         };

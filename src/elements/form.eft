@@ -1,4 +1,4 @@
->div.master
+>div.master.{{disabled}}
     -mpInfoBar
     >div.avatar
         #style = background-image: url({{avatarSource}})
@@ -34,9 +34,7 @@
         >input.submit
             #type = submit
             #value = {{btnSubmit}}
-        >input.submit.{{displayPseudoSubmit}}
-            #type = button
-            #value = {{btnSubmitting}}
+            #disabled = {{disableSubmit}}
         >input.cancel.{{displayCancel}}
             #type = button
             #value = {{btnCancel}}
