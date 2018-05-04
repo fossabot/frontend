@@ -30,14 +30,14 @@ class Pomment {
             throw new ReferenceError('The element is already loaded as Pomment instance');
         }
         if (injectCSS) {
-            if (document.getElementById(styleIdentify)) {
-                console.warn('[Pomment]', 'The built-in CSS is already injected. Ignoring.');
-            } else {
+            if (!document.getElementById(styleIdentify)) {
                 const container = document.createElement('style');
                 container.id = styleIdentify;
                 container.textContent = CSString;
                 document.head.appendChild(container);
                 console.log('[Pomment]', 'Built-in CSS injected.');
+            } else {
+                console.warn('[Pomment]', 'The built-in CSS is already injected. Ignoring.');
             }
         }
         this.element.dataset.pomment = 'loaded';
