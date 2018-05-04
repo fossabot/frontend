@@ -35,16 +35,16 @@ class Pomment {
     async init() {
         // 0.   前期准备
         // 0.1  环境初始化
-        const _this = this;
-        if (!this.templateMain) {
-            this.templateMain = new TemplateMain();
+        let templateMain;
+        if (!templateMain) {
+            templateMain = new TemplateMain();
         }
-        this.templateMain.$mount({ target: this.element });
+        templateMain.$mount({ target: this.element });
         // 0.2  内容加载
         const barTop = createBar(this, {
             leftText: tranString('msgLoading'),
         });
-        this.templateMain.mpInfoBar = barTop;
+        templateMain.mpInfoBar = barTop;
         let request;
         try {
             request = await ajax({
@@ -102,7 +102,7 @@ class Pomment {
             displayCancel: 'hidden',
             displayPseudoSubmit: 'hidden',
         };
-        this.templateMain.mpForm = templateForm;
+        templateMain.mpForm = templateForm;
         templateForm.$methods.eventMetaBlur = ({ state }) => {
             ({ valueName, valueEmail, valueSite } = state.$data);
             try {
@@ -131,7 +131,7 @@ class Pomment {
                 rightEvent() {
                     templateForm.$umount();
                     templateForm.$data.displayCancel = 'hidden';
-                    _this.templateMain.mpForm = templateForm;
+                    _templateMain.mpForm = templateForm;
                     barTop.$data.hidden = 'hidden';
                 },
             });
@@ -147,9 +147,9 @@ class Pomment {
                     primary.slave.push(createComment(this, templateForm, formStatusUpdate, slaves[j], false, !response.locked));
                 }
             }
-            this.templateMain.mpComments.push(primary);
+            templateMain.mpComments.push(primary);
         }
-        console.info('[Pomment]', this.templateMain.mpComments);
+        console.info('[Pomment]', templateMain.mpComments);
         return false;
     }
 }
