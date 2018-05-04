@@ -102,20 +102,16 @@ const submit = async (_this, main, form, formCallback) => {
     } else {
         let leftText;
         if (response.info.indexOf('bad') === 0) {
-            // 请在提交表单时提供符合要求的信息
             leftText = tranString('errBadInfo');
         } else if (response.info.indexOf('disallowed') === 0) {
-            // 您提供的信息存在不适当的内容
             leftText = tranString('errDisallowedInfo');
         } else if (response.info === 'locked') {
-            // 主题被管理员锁定
             leftText = tranString('errLocked');
         } else if (response.info === 'please wait') {
             leftText = tranString('errWait', {
                 gap: Math.ceil(response.timeLeft),
             });
         } else {
-            // 发生了未预料的错误
             leftText = tranString('errOther', {
                 info: response.info,
             });
