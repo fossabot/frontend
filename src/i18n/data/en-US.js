@@ -37,6 +37,7 @@ Are you sure? Visiting websites from unknown origin has risk.`;
     errOther: 'Unexpected error occurred: {{info}}',
     errSubmitFailed: 'Failed to submit comment due to connection problem.',
     errTimeExpired: 'Time out.',
+    errWait: 'Please wait for {{gap}} seconds.',
     timeSinceJustNow: 'Just now',
     timeSinceSecond: '{{ago}} seconds ago',
     timeSinceMinute: '{{ago}} minutes ago',

@@ -110,6 +110,10 @@ const submit = async (_this, main, form, formCallback) => {
         } else if (response.info === 'locked') {
             // 主题被管理员锁定
             leftText = tranString('errLocked');
+        } else if (response.info === 'please wait') {
+            leftText = tranString('errWait', {
+                gap: Math.ceil(response.timeLeft),
+            });
         } else {
             // 发生了未预料的错误
             leftText = tranString('errOther', {
