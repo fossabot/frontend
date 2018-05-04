@@ -17,9 +17,9 @@
                 .{{btnReply}}
             >span.barrier.{{showEdit}}
                 .  |  
-            >a.{{showEdit}}
+            >a.{{showEdit = hidden}}
                 @click = eventEdit
-                .{{btnEdit}}
+                .{{btnEdit = hidden}}
         -mpEdit
     -mpForm
     >div.slave
