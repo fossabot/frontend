@@ -19,7 +19,9 @@ import TemplateComment from '../elements/comment.eft';
  * @param {boolean}     replyable       可以被回复
  * @param {boolean}     editable        可以被编辑
  */
-const createComment = (_this, main, form, formCallback, item, master, replyable) => {
+const createComment = ({
+    _this, main, form, formCallback, item, master, replyable,
+} = {}) => {
     const primary = new TemplateComment({
         $data: {
             id: item.id,

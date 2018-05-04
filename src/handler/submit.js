@@ -26,7 +26,6 @@ const submit = async (_this, main, form, formCallback) => {
         form.mpInfoBar.$umount();
     }
     let request;
-    let bar;
     try {
         request = await ajax({
             url: `${_this.server}/v1/thread/${_this.thread}/submit`,
@@ -55,15 +54,15 @@ const submit = async (_this, main, form, formCallback) => {
             barStyle: 'success',
             leftText: tranString('msgPostSuccess'),
         });
-        const comment = createComment(
+        const comment = createComment({
             _this,
             main,
             form,
             formCallback,
-            response.content,
-            true,
-            true,
-        );
+            item: response.content,
+            master: true,
+            replyable: true,
+        });
         comment.$data.focus = 'focus';
         if (_this.position < 0) {
             main.mpComments.unshift(comment);
