@@ -1,41 +1,42 @@
 >div.master.{{disabled}}
     -mpInfoBar
-    >div.avatar
-        #style = background-image: url({{avatarSource}})
-    >form
-        @submit.prevent = eventSubmit
-        >div
-            #class = guest-meta
-            >input.user-info.base-color
-                #type = text
-                %value = {{valueName}}
-                #autocomplete = nope
-                #placeholder = {{tipName}}
+    >div
+        >div.avatar
+            #style = background-image: url({{avatarSource}})
+        >form
+            @submit.prevent = eventSubmit
+            >div
+                #class = guest-meta
+                >input.user-info.base-color
+                    #type = text
+                    %value = {{valueName}}
+                    #autocomplete = nope
+                    #placeholder = {{tipName}}
+                    #required = required
+                    @blur = eventMetaBlur
+                >input.user-info.base-color
+                    #type = email
+                    %value = {{valueEmail}}
+                    #autocomplete = nope
+                    #placeholder = {{tipEmail}}
+                    #required = required
+                    @blur = eventMetaBlur
+                >input.user-info.base-color
+                    #type = url
+                    %value = {{valueSite}}
+                    #autocomplete = nope
+                    #placeholder = {{tipSite}}
+                    #required = required
+                    @blur = eventMetaBlur
+            >textarea
+                %value = {{valueContent}}
+                #placeholder = {{tipContent}}
                 #required = required
-                @blur = eventMetaBlur
-            >input.user-info.base-color
-                #type = email
-                %value = {{valueEmail}}
-                #autocomplete = nope
-                #placeholder = {{tipEmail}}
-                #required = required
-                @blur = eventMetaBlur
-            >input.user-info.base-color
-                #type = url
-                %value = {{valueSite}}
-                #autocomplete = nope
-                #placeholder = {{tipSite}}
-                #required = required
-                @blur = eventMetaBlur
-        >textarea
-            %value = {{valueContent}}
-            #placeholder = {{tipContent}}
-            #required = required
-        >input.submit
-            #type = submit
-            #value = {{btnSubmit}}
-            #disabled = {{disableSubmit}}
-        >input.cancel.{{displayCancel}}
-            #type = button
-            #value = {{btnCancel}}
-            @click = eventCancel
+            >input.submit
+                #type = submit
+                #value = {{btnSubmit}}
+                #disabled = {{disableSubmit}}
+            >input.cancel.{{displayCancel}}
+                #type = button
+                #value = {{btnCancel}}
+                @click = eventCancel
