@@ -27,7 +27,7 @@ class Pomment {
             this.element = element;
         }
         if (typeof this.element.dataset.pomment !== 'undefined') {
-            throw new Error('The element is already loaded as Pomment instance');
+            throw new ReferenceError('The element is already loaded as Pomment instance');
         }
         if (injectCSS) {
             if (document.getElementById(styleIdentify)) {
