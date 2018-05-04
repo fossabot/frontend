@@ -1,4 +1,5 @@
->div.{{masterBackground}}
+>div.{{masterBackground}}.{{focus}}
+    -mpInfoBar
     >div.master
         #id = pomment-{{id}}
         >div.avatar
@@ -19,22 +20,7 @@
             >a.{{showEdit}}
                 @click = eventEdit
                 .{{btnEdit}}
-        >form.guest-edit
-            >textarea
-                #autocomplete = nope
-                #required = required
-            >input.submit
-                #type = submit
-                #value = {{btnSubmit}}
-                @click = eventSubmit
-            >input.submit
-                #type = button
-                #value = {{btnSubmitting}}
-                #style = display: {{displayPseudoCancel = none}};
-            >input.cancel
-                #type = button
-                #value = {{btnCancel}}
-                @click = eventCancel
+        -mpEdit
     -mpForm
     >div.slave
         +slave

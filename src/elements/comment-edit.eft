@@ -1,0 +1,16 @@
+>form.guest-edit
+    >textarea
+        #autocomplete = nope
+        #required = required
+    >input.submit
+        #type = submit
+        #value = {{btnSubmit}}
+        @click = eventSubmit
+    >input.submit
+        #type = button
+        #value = {{btnSubmitting}}
+        #style = display: {{displayPseudoCancel = none}};
+    >input.cancel
+        #type = button
+        #value = {{btnCancel}}
+        @click = eventCancel
