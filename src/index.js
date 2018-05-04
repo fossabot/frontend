@@ -20,6 +20,22 @@ class Pomment {
         title = document.title,
         url = document.location.href,
         injectCSS = true,
+        siteConfirmHandler = (target) => {
+            const { hostname } = new URL(target);
+            const hostnameParts = hostname.split('.');
+            let domain;
+            if (hostnameParts.length > 1 && Number.isNaN(Number(hostnameParts[hostnameParts.length - 1]))) {
+                domain = `${hostnameParts[hostnameParts.length - 2]}.${hostnameParts[hostnameParts.length - 1]}`;
+            } else {
+                domain = hostname;
+            }
+            if (window.confirm(tranString('msgSiteConfirm', {
+                domain,
+                url: target,
+            }))) {
+                window.open(target);
+            }
+        },
     } = {}) {
         if (!(element instanceof Element)) {
             this.element = document.querySelector(element);
@@ -46,6 +62,7 @@ class Pomment {
         this.avatarPrefix = avatarPrefix;
         this.title = title;
         this.url = url;
+        this.siteConfirmHandler = siteConfirmHandler;
     }
     async init() {
         // 0.   前期准备

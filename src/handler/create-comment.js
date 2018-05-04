@@ -59,10 +59,10 @@ const createComment = (_this, main, form, formCallback, item, master, replyable,
     } else {
         primary.mpPostName = new MinorNameLink({
             $data: {
-                url: item.website,
                 content: item.name,
             },
         });
+        primary.mpPostName.$methods.eventClick = () => _this.siteConfirmHandler(item.website);
     }
     return primary;
 };
