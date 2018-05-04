@@ -9,7 +9,6 @@ export default {
     msgReply: "You are replying {{name}}'s post.",
     msgSiteConfirm(data) {
         return `You are going to open a URL provided by a guest.
-Domain: ${data.domain}
 URL: ${data.url}
 
 Are you sure? Visiting websites from unknown origin has risk.`;

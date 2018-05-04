@@ -21,16 +21,7 @@ class Pomment {
         url = document.location.href,
         injectCSS = true,
         siteConfirmHandler = (target) => {
-            const { hostname } = new URL(target);
-            const hostnameParts = hostname.split('.');
-            let domain;
-            if (hostnameParts.length > 1 && Number.isNaN(Number(hostnameParts[hostnameParts.length - 1]))) {
-                domain = `${hostnameParts[hostnameParts.length - 2]}.${hostnameParts[hostnameParts.length - 1]}`;
-            } else {
-                domain = hostname;
-            }
             if (window.confirm(tranString('msgSiteConfirm', {
-                domain,
                 url: target,
             }))) {
                 window.open(target);
