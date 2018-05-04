@@ -1,6 +1,7 @@
 import ajax from '../lib/ajax';
 import createBar from './create-bar';
 import createComment from './create-comment';
+import searchComment from './search-comment';
 import tranString from '../i18n/main';
 
 const freeze = (form) => {
@@ -56,23 +57,28 @@ const submit = async (_this, main, form, formCallback) => {
             leftText: tranString('msgPostSuccess'),
         });
         form.mpInfoBar = bar;
+        const comment = createComment(
+            _this,
+            main,
+            form,
+            formCallback,
+            response.content,
+            true,
+            true,
+            true,
+        );
         if (_this.position < 0) {
-            const comment = createComment(
-                _this,
-                main,
-                form,
-                formCallback,
-                response.content,
-                true,
-                true,
-                true,
-            );
             main.mpComments.unshift(comment);
-            window.scroll({
-                top: comment.$element.offsetTop,
-                behavior: 'smooth',
-            });
+        } else {
+            comment.$data.masterBackground = '';
+            const target = searchComment(main.mpComments, _this.position);
+            console.log(target);
+            main.mpComments[target].slave.push(comment);
         }
+        window.scroll({
+            top: comment.$element.offsetTop,
+            behavior: 'smooth',
+        });
         if (response.coolDownTimeout > 0) {
             let count = response.coolDownTimeout;
             form.$data = {

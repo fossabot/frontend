@@ -13,7 +13,7 @@ import CSString from './assets/scss/index.scss';
 import TemplateForm from './elements/form.eft';
 import TemplateMain from './elements/main.eft';
 
-const styleIdentify = `pomment-${md5(Math.random()).slice(0, 8)}`;
+const styleIdentify = `pomment-style-${md5(Math.random()).slice(0, 8)}`;
 
 class Pomment {
     constructor(element, server, thread, {
@@ -161,9 +161,8 @@ class Pomment {
                 },
             });
         };
-        templateForm.$methods.eventSubmit = () => submit(this, templateMain, templateForm, formStatusUpdate);
         // 2.   评论树处理
-        const dataSorted = makeTree(Object.values(response.content));
+        const dataSorted = JSON.parse(JSON.stringify(makeTree(Object.values(response.content))));
         console.log(dataSorted);
         for (let i = 0; i < dataSorted.length; i += 1) {
             const primary = createComment(
@@ -192,6 +191,8 @@ class Pomment {
             templateMain.mpComments.push(primary);
         }
         console.info('[Pomment]', templateMain.mpComments);
+        // 3.   评论提交相关
+        templateForm.$methods.eventSubmit = () => submit(this, templateMain, templateForm, formStatusUpdate);
         return false;
     }
 }

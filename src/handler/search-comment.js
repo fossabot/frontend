@@ -5,17 +5,18 @@
  * @returns {array}
  */
 const searchComment = (tree, id) => {
+    console.log(tree);
     for (let i = 0; i < tree.length; i += 1) {
         if (tree[i].$data.id === id) {
-            return [i, -1];
+            return i;
         }
-        for (let j = 0; j < tree[i].length; j += 1) {
-            if (tree[i][j].$data.id === id) {
-                return [i, j];
+        for (let j = 0; j < tree[i].slave.length; j += 1) {
+            if (tree[i].slave[j].$data.id === id) {
+                return i;
             }
         }
     }
-    return [-1, -1];
+    return -1;
 };
 
 export default searchComment;
