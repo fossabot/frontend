@@ -59,6 +59,7 @@ class Pomment {
     }
     async init() {
         // 0.   前期准备
+        const _this = this;
         // 0.1  环境初始化
         let templateMain;
         if (!templateMain) {
@@ -88,7 +89,7 @@ class Pomment {
             };
             barTop.$methods.eventClick = () => {
                 barTop.$destroy();
-                this.init();
+                _this.init();
             };
             return false;
         }
