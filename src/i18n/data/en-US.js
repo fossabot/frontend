@@ -2,8 +2,8 @@ const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'O
 
 export default {
     __name__: 'English',
-    msgClosed: 'This thread is locked by the admin.',
-    msgFromDeletedPost: 'Deleted Post',
+    // msgClosed: 'This thread is locked by the admin.',
+    // msgFromDeletedPost: 'Deleted Post',
     msgLoading: 'Loading Pomment ...',
     msgPostSuccess: 'Post successfully submitted.',
     msgReply: "You are replying {{name}}'s post.",
@@ -13,7 +13,6 @@ URL: ${data.url}
 
 Are you sure? Visiting websites from unknown origin has risk.`;
     },
-    tipAvatar: '{{name}}\'s avatar',
     tipContent: 'Why not say something?',
     tipEmail: 'Email',
     tipName: 'Name',
@@ -21,7 +20,6 @@ Are you sure? Visiting websites from unknown origin has risk.`;
     btnCancel: 'Cancel',
     btnClose: 'Close',
     btnEdit: 'Edit',
-    btnOkay: 'Get it!',
     btnReply: 'Reply',
     btnRetry: 'Retry',
     btnSubmit: 'Submit',
@@ -31,7 +29,6 @@ Are you sure? Visiting websites from unknown origin has risk.`;
     btnWaitCountdown: 'Please wait ({{timeout}})',
     errBadInfo: 'The information you provided is invalid.',
     errBadSubmit: 'You did an illegal operation.',
-    errDisallowedInfo: 'Inappropriate content in the information you provided.',
     errLoadFailed: 'Failed to load Pomment.',
     errLocked: 'The thread is locked by an administrator.',
     errOther: 'Unexpected error occurred: {{info}}',
