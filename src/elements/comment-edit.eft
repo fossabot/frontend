@@ -1,4 +1,4 @@
->form.guest-edit
+>form.guest-edit.{{hidden = hidden}}
     >textarea
         #autocomplete = nope
         #required = required

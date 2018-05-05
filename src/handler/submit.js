@@ -4,6 +4,8 @@ import createComment from './create-comment';
 import searchComment from './search-comment';
 import tranString from '../i18n/main';
 
+import TemplateCommentEdit from '../elements/comment-edit.eft';
+
 const freeze = (form) => {
     form.$data = {
         disabled: 'disabled',
@@ -76,6 +78,16 @@ const submit = async (_this, main, form, formCallback) => {
             top: comment.$element.offsetTop,
             behavior: 'smooth',
         });
+        if (response.gusetEditTimeout >= 0) {
+            comment.mpEdit = new TemplateCommentEdit({
+                btnSubmit: tranString('btnSubmit'),
+                btnSubmitting: tranString('btnSubmitting'),
+                btnCancel: tranString('btnCancel'),
+            });
+            if (response.gusetEditTimeout > 0) {
+                // tbs
+            }
+        }
         if (response.coolDownTimeout > 0) {
             let count = response.coolDownTimeout;
             form.$data = {
