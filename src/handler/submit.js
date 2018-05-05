@@ -80,7 +80,7 @@ const submit = async (_this, main, form, formCallback) => {
         });
         if (response.gusetEditTimeout >= 0) {
             comment.$data.showEdit = '';
-            comment.mpEdit = new TemplateCommentEdit({
+            const editor = new TemplateCommentEdit({
                 $data: {
                     btnSubmit: tranString('btnSubmit'),
                     btnSubmitting: tranString('btnSubmitting'),
@@ -88,17 +88,64 @@ const submit = async (_this, main, form, formCallback) => {
                     original: response.content.content,
                 },
             });
-            comment.mpEdit.$methods.eventCancel = () => {
+            comment.mpEdit = editor;
+            editor.$methods.eventCancel = () => {
                 comment.$data.hidden = '';
-                comment.mpEdit.$data.hidden = 'hidden';
+                editor.$data.hidden = 'hidden';
             };
             comment.$methods.eventEdit = () => {
                 comment.$data.hidden = 'hidden';
-                comment.mpEdit.$data.hidden = '';
+                editor.$data.hidden = '';
             };
             if (response.gusetEditTimeout > 0) {
-                // tbs
+                let count = response.gusetEditTimeout;
+                editor.$data.btnSubmit = tranString('btnSubmitCountdown', {
+                    timeout: count,
+                });
+                const countdown = setInterval(() => {
+                    count -= 1;
+                    editor.$data.btnSubmit = tranString('btnSubmitCountdown', {
+                        timeout: count,
+                    });
+                    if (count <= 0) {
+                        editor.$data.btnSubmit = tranString('btnSubmitTimeOut');
+                        editor.$data.disableSubmit = 'disabled';
+                        clearInterval(countdown);
+                    }
+                }, 1000);
+            } else {
+                editor.$data.btnSubmit = tranString('btnSubmit');
             }
+            editor.$methods.eventSubmit = async () => {
+                comment.$data.disabled = 'disabled';
+                let editRequest;
+                try {
+                    editRequest = await ajax({
+                        url: `${_this.server}/v1/thread/${_this.thread}/edit`,
+                        data: {
+                            id: response.content.id,
+                            content: editor.$data.original,
+                            token: response.content.editToken,
+                        },
+                    });
+                } catch (e) {
+                    alert(tranString('errSubmitFailed'));
+                    comment.$data.disabled = '';
+                    return false;
+                }
+                comment.$data.disabled = '';
+                const editResponse = JSON.parse(editRequest.responseText);
+                if (editResponse.status === 'success') {
+                    comment.$data.content = editor.$data.original;
+                    comment.$data.hidden = '';
+                    editor.$data.hidden = 'hidden';
+                } else if (editResponse.info === 'time expired') {
+                    alert(tranString('errTimeExpired'));
+                } else {
+                    alert(tranString('errBadSubmit'));
+                }
+                return false;
+            };
         }
         if (response.coolDownTimeout > 0) {
             let count = response.coolDownTimeout;
@@ -122,7 +169,6 @@ const submit = async (_this, main, form, formCallback) => {
         } else {
             unFreeze(form);
         }
-        // main.mpComments
     } else {
         let leftText;
         if (response.info.indexOf('bad') === 0) {

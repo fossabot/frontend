@@ -1,4 +1,4 @@
->div.{{masterBackground}}.{{focus}}
+>div.{{masterBackground}}.{{focus}}.{{disabled}}
     -mpInfoBar
     >div.master
         #id = pomment-{{id}}

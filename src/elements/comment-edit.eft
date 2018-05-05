@@ -1,4 +1,5 @@
 >form.guest-edit.{{hidden = hidden}}
+    @submit.prevent = eventSubmit
     >textarea
         #autocomplete = nope
         #required = required
@@ -6,8 +7,8 @@
     >input.submit
         #type = submit
         #value = {{btnSubmit}}
-        @click = eventSubmit
-    >input.submit
+        #disabled = {{disableSubmit}}
+    >input.button
         #type = button
         #value = {{btnSubmitting}}
         #style = display: {{displayPseudoCancel = none}};
