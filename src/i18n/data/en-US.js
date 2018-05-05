@@ -3,7 +3,6 @@ const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'O
 export default {
     __name__: 'English',
     // msgClosed: 'This thread is locked by the admin.',
-    // msgFromDeletedPost: 'Deleted Post',
     msgLoading: 'Loading Pomment ...',
     msgPostSuccess: 'Post successfully submitted.',
     msgReply: "You are replying {{name}}'s post.",
