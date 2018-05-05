@@ -24,6 +24,7 @@ export default {
     btnWaitCountdown: 'Please wait ({{timeout}})',
     errBadInfo: 'The information you provided is invalid.',
     errBadSubmit: 'You did an illegal operation.',
+    errDisallowedInfo: 'Inappropriate content in the information you provided.',
     errLoadFailed: 'Failed to load Pomment.',
     errLocked: 'The thread is locked by an administrator.',
     errOther: 'Unexpected error occurred: {{info}}',

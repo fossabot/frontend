@@ -21,6 +21,7 @@ export default {
     btnWaitCountdown: '请稍等 {{timeout}} 秒',
     errBadInfo: '你提交了无效的信息。',
     errBadSubmit: '你进行了非法操作。',
+    errDisallowedInfo: '你提交的信息不被允许。',
     errLoadFailed: 'Pomment 加载失败。',
     errLocked: '这个主题被管理员锁定了。',
     errOther: '发生了未知错误：{{info}}',
