@@ -77,7 +77,7 @@ class Pomment {
                 url: `${this.server}/v1/thread/${this.thread}/list`,
             });
         } catch (e) {
-            console.info('[Pomment]', `${e}`);
+            console.error('[Pomment]', e);
             const leftText = tranString('errLoadFailed');
             const rightText = tranString('btnRetry');
             barTop.mpRichInfo.$data = {

@@ -42,6 +42,7 @@ const submit = async (_this, main, form, formCallback) => {
             },
         });
     } catch (e) {
+        console.error('[Pomment]', e);
         form.mpInfoBar = createBar(_this, {
             barStyle: 'error',
             leftText: tranString('errSubmitFailed'),
@@ -129,6 +130,7 @@ const submit = async (_this, main, form, formCallback) => {
                         },
                     });
                 } catch (e) {
+                    console.error('[Pomment]', e);
                     alert(tranString('errSubmitFailed'));
                     comment.$data.disabled = '';
                     return false;
