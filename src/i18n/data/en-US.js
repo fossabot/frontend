@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 export default {
@@ -6,12 +7,7 @@ export default {
     msgLoading: 'Loading Pomment ...',
     msgPostSuccess: 'Post successfully submitted.',
     msgReply: "You are replying {{name}}'s post.",
-    msgSiteConfirm(data) {
-        return `You are going to open a URL provided by a guest.
-URL: ${data.url}
-
-Are you sure? Visiting websites from unknown origin has risk.`;
-    },
+    msgSiteConfirm: 'You are going to open a URL provided by a guest.\n\nURL: {{url}}\n\nAre you sure? Visiting websites from unknown origin has risk.',
     tipContent: 'Why not say something?',
     tipEmail: 'Email',
     tipName: 'Name',
