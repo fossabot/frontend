@@ -9,7 +9,7 @@
             >time
                 #data-abs = {{absoluteTime}}
                 .{{relativeTime}}
-        >div.content.{{hiddenContent}}
+        >div.content.{{hidden}}
             .{{content}}
             >hr
             >a.{{showReply}}

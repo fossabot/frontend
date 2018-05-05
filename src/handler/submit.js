@@ -79,11 +79,22 @@ const submit = async (_this, main, form, formCallback) => {
             behavior: 'smooth',
         });
         if (response.gusetEditTimeout >= 0) {
+            comment.$data.showEdit = '';
             comment.mpEdit = new TemplateCommentEdit({
-                btnSubmit: tranString('btnSubmit'),
-                btnSubmitting: tranString('btnSubmitting'),
-                btnCancel: tranString('btnCancel'),
+                $data: {
+                    btnSubmit: tranString('btnSubmit'),
+                    btnSubmitting: tranString('btnSubmitting'),
+                    btnCancel: tranString('btnCancel'),
+                },
             });
+            comment.mpEdit.$methods.eventCancel = () => {
+                comment.$data.hidden = '';
+                comment.mpEdit.$data.hidden = 'hidden';
+            };
+            comment.$methods.eventEdit = () => {
+                comment.$data.hidden = 'hidden';
+                comment.mpEdit.$data.hidden = '';
+            };
             if (response.gusetEditTimeout > 0) {
                 // tbs
             }
