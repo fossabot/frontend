@@ -2,6 +2,7 @@
     >textarea
         #autocomplete = nope
         #required = required
+        %value = {{original}}
     >input.submit
         #type = submit
         #value = {{btnSubmit}}

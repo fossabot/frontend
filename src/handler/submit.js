@@ -85,6 +85,7 @@ const submit = async (_this, main, form, formCallback) => {
                     btnSubmit: tranString('btnSubmit'),
                     btnSubmitting: tranString('btnSubmitting'),
                     btnCancel: tranString('btnCancel'),
+                    original: response.content.content,
                 },
             });
             comment.mpEdit.$methods.eventCancel = () => {
