@@ -1,10 +1,12 @@
 /* eslint-disable max-len */
 const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const brand = 'Pomment';
 
 export default {
     __name__: 'English',
-    // msgClosed: 'This thread is locked by the admin.',
-    msgLoading: 'Loading Pomment ...',
+    brand: 'Pomment',
+    msgClosed: 'This thread is locked by the admin.',
+    msgLoading: `Loading ${brand} ...`,
     msgPostSuccess: 'Post successfully submitted.',
     msgReply: "You are replying {{name}}'s post.",
     msgSiteConfirm: 'You are going to open a URL provided by a guest.\n\nURL: {{url}}\n\nAre you sure? Visiting websites from unknown origin has risk.',
@@ -25,7 +27,7 @@ export default {
     errBadInfo: 'The information you provided is invalid.',
     errBadSubmit: 'You did an illegal operation.',
     errDisallowedInfo: 'Inappropriate content in the information you provided.',
-    errLoadFailed: 'Failed to load Pomment.',
+    errLoadFailed: `Failed to load ${brand}.`,
     errLocked: 'The thread is locked by an administrator.',
     errOther: 'Unexpected error occurred: {{info}}',
     errSubmitFailed: 'Failed to submit comment due to connection problem.',
