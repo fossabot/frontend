@@ -1,6 +1,6 @@
 stages:
   - build
-#  - push
+  - push
 
 cache:
   paths:
@@ -13,10 +13,10 @@ test_build:
    - yarn
    - yarn run build
 
-#push_master:
-#  image: docker.reallserver.cn/public/docker-git
-#  stage: push
-#  only:
-#  - master
-#  script:
-#  - git push --set-upstream https://${github_key}@github.com/pomment/frontend.git HEAD:master
+push_master:
+  image: docker.reallserver.cn/public/docker-git
+  stage: push
+  only:
+  - master
+  script:
+  - git push --set-upstream https://${github_key}@github.com/pomment/frontend.git HEAD:master
