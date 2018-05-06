@@ -2,12 +2,12 @@ import md5 from 'blueimp-md5';
 
 import ajax from './lib/ajax';
 import avatarURL from './lib/gravatar';
-import createBar from './handler/create-bar';
-import createComment from './handler/create-comment';
+import createBar from './handlers/create-bar';
+import createComment from './handlers/create-comment';
 import makeTree from './lib/make-tree';
-import submit from './handler/submit';
+import submit from './handlers/submit';
 import tranString from './i18n/main';
-import updateBar from './handler/update-bar';
+import updateBar from './handlers/update-bar';
 
 import CSString from './assets/scss/index.scss';
 import TemplateForm from './templates/form.eft';

@@ -1,5 +1,5 @@
-import MinorBarText from '../templates/minor/bar-text.eft';
-import MinorBarLink from '../templates/minor/bar-link.eft';
+import TemplatePartialBarText from '../templates/partial/bar-text.eft';
+import TemplatePartialBarLink from '../templates/partial/bar-link.eft';
 
 const updateBar = (bar, {
     barStyle = 'info',
@@ -20,7 +20,7 @@ const updateBar = (bar, {
     bar.mpRichInfo.$destroy();
     switch (type) {
     case 'text': {
-        bar.mpRichInfo = new MinorBarText({
+        bar.mpRichInfo = new TemplatePartialBarText({
             $data: {
                 leftText,
             },
@@ -28,7 +28,7 @@ const updateBar = (bar, {
         break;
     }
     case 'link': {
-        bar.mpRichInfo = new MinorBarLink({
+        bar.mpRichInfo = new TemplatePartialBarLink({
             $data: {
                 leftText,
             },

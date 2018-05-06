@@ -1,8 +1,8 @@
 import tranString from '../i18n/main';
 
 import TemplateBar from '../templates/bar.eft';
-import MinorBarText from '../templates/minor/bar-text.eft';
-import MinorBarLink from '../templates/minor/bar-link.eft';
+import TemplatePartialBarText from '../templates/partial/bar-text.eft';
+import TemplatePartialBarLink from '../templates/partial/bar-link.eft';
 
 const createBar = (_this, {
     barStyle = 'info',
@@ -25,7 +25,7 @@ const createBar = (_this, {
     }
     switch (type) {
     case 'text': {
-        bar.mpRichInfo = new MinorBarText({
+        bar.mpRichInfo = new TemplatePartialBarText({
             $data: {
                 leftText,
             },
@@ -33,7 +33,7 @@ const createBar = (_this, {
         break;
     }
     case 'link': {
-        bar.mpRichInfo = new MinorBarLink({
+        bar.mpRichInfo = new TemplatePartialBarLink({
             $data: {
                 leftText,
             },

@@ -4,8 +4,8 @@ import avatarURL from '../lib/gravatar';
 import isBlank from '../lib/is-blank';
 import timeSince from '../lib/time-since';
 import tranString from '../i18n/main';
-import MinorName from '../templates/minor/name.eft';
-import MinorNameLink from '../templates/minor/name-link.eft';
+import TemplatePartialName from '../templates/partial/name.eft';
+import TemplatePartialNameLink from '../templates/partial/name-link.eft';
 import TemplateComment from '../templates/comment.eft';
 
 /**
@@ -56,13 +56,13 @@ const createComment = ({
         };
     }
     if (isBlank(item.website)) {
-        primary.mpPostName = new MinorName({
+        primary.mpPostName = new TemplatePartialName({
             $data: {
                 content: item.name,
             },
         });
     } else {
-        primary.mpPostName = new MinorNameLink({
+        primary.mpPostName = new TemplatePartialNameLink({
             $data: {
                 content: item.name,
             },
