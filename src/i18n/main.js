@@ -25,7 +25,7 @@ const tranStr = (key, text = {}) => {
     }
     // 2. 如果找不到需要的字段
     if (typeof langIndex[usedLang][key] === 'undefined') {
-        console.warn(`Unable to find string \`${key}\` from \`${usedLang}\``);
+        console.warn('[Pomment]', `Unable to find string \`${key}\` from \`${usedLang}\``);
         return '';
     }
     // 3. 对于 function 字段
@@ -36,7 +36,7 @@ const tranStr = (key, text = {}) => {
     const textKeys = Object.keys(text);
     let output = langIndex[usedLang][key];
     for (let i = 0; i < textKeys.length; i += 1) {
-        output = safeReplace(output, `{{${textKeys}}}`, text[textKeys]);
+        output = safeReplace(output, `{{${textKeys[i]}}}`, text[textKeys[i]]);
     }
     return output;
 };
