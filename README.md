@@ -1,4 +1,6 @@
 # Pomment 访客界面
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpomment%2Ffrontend.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpomment%2Ffrontend?ref=badge_shield)
+
 
 本项目为 Pomment 提供一个友好的、基本的、可读性高的访客前端界面。
 
@@ -33,3 +35,6 @@
 npm run build           # 生产环境
 npm run build-test      # 开发环境
 ```
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpomment%2Ffrontend.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpomment%2Ffrontend?ref=badge_large)
