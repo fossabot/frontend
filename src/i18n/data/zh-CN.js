@@ -2,7 +2,6 @@ const brand = 'Pomment';
 
 export default {
     __name__: 'Chinese (Simplified)',
-    brand: 'Pomment',
     msgClosed: '主题被管理员锁定了。',
     msgLoading: `正在加载 ${brand} ...`,
     msgPostSuccess: '评论提交成功。',

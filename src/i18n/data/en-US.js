@@ -4,7 +4,6 @@ const brand = 'Pomment';
 
 export default {
     __name__: 'English',
-    brand: 'Pomment',
     msgClosed: 'This thread is locked by the admin.',
     msgLoading: `Loading ${brand} ...`,
     msgPostSuccess: 'Post successfully submitted.',
