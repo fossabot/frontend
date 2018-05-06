@@ -21,11 +21,11 @@ const timeSince = (date) => {
         if (gap >= gapList[i].min && gap < gapList[i + 1].min) {
             const divise = i === 0 ? 1 : gapList[i].min;
             const ago = Math.floor(gap / divise);
-            if (i === 0 && ago <= 3) {
+            if ((i === 0 && ago <= 3) || (gap < 0 && gap > -15)) {
                 return {
                     value: tranStr('timeSinceJustNow'),
                     outBound: false,
-                }
+                };
             }
             return {
                 value: `${tranStr(gapList[i].suffix, {
