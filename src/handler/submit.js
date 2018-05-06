@@ -53,6 +53,7 @@ const submit = async (_this, main, form, formCallback) => {
     const response = JSON.parse(request.responseText);
     console.log('[Pomment]', response);
     if (response.status === 'success') {
+        form.$data.valueContent = '';
         form.mpInfoBar = createBar(_this, {
             barStyle: 'success',
             leftText: tranString('msgPostSuccess'),
@@ -72,7 +73,6 @@ const submit = async (_this, main, form, formCallback) => {
         } else {
             comment.$data.masterBackground = '';
             const target = searchComment(main.mpComments, _this.position);
-            console.log(target);
             main.mpComments[target].slave.push(comment);
         }
         window.scroll({
