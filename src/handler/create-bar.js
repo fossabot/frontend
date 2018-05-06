@@ -1,8 +1,8 @@
 import tranString from '../i18n/main';
 
-import TemplateBar from '../elements/bar.eft';
-import MinorBarText from '../elements/minor/bar-text.eft';
-import MinorBarLink from '../elements/minor/bar-link.eft';
+import TemplateBar from '../templates/bar.eft';
+import MinorBarText from '../templates/minor/bar-text.eft';
+import MinorBarLink from '../templates/minor/bar-link.eft';
 
 const createBar = (_this, {
     barStyle = 'info',

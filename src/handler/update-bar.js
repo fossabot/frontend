@@ -1,5 +1,5 @@
-import MinorBarText from '../elements/minor/bar-text.eft';
-import MinorBarLink from '../elements/minor/bar-link.eft';
+import MinorBarText from '../templates/minor/bar-text.eft';
+import MinorBarLink from '../templates/minor/bar-link.eft';
 
 const updateBar = (bar, {
     barStyle = 'info',

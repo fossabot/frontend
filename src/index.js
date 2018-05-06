@@ -10,12 +10,24 @@ import tranString from './i18n/main';
 import updateBar from './handler/update-bar';
 
 import CSString from './assets/scss/index.scss';
-import TemplateForm from './elements/form.eft';
-import TemplateMain from './elements/main.eft';
+import TemplateForm from './templates/form.eft';
+import TemplateMain from './templates/main.eft';
 
+// noinspection JSUnresolvedFunction
 const styleIdentify = `pomment-style-${md5(Math.random()).slice(0, 8)}`;
 
 class Pomment {
+    /**
+     * 创建一个 Pomment 实例
+     * @param {string|HTMLElement}  element                 要插入评论框挂件的元素
+     * @param {string}              server                  Pomment 服务器地址。不要以 / 结尾
+     * @param {string}              thread                  主题的名称
+     * @param {string}              [avatarPrefix]          使用的自定义 Gravatar 服务器地址。需要以 / 结尾
+     * @param {string}              [title]                 主题的标题
+     * @param {string}              [url]                   主题的唯一链接
+     * @param {boolean}             [injectCSS]             是否插入内置 CSS
+     * @param {function}            [siteConfirmHandler]    确认访问访客提供的链接的确认处理函数
+     */
     constructor(element, server, thread, {
         avatarPrefix = 'https://secure.gravatar.com/avatar/',
         title = document.title,

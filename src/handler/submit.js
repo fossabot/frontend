@@ -4,7 +4,7 @@ import createComment from './create-comment';
 import searchComment from './search-comment';
 import tranString from '../i18n/main';
 
-import TemplateCommentEdit from '../elements/comment-edit.eft';
+import TemplateCommentEdit from '../templates/comment-edit.eft';
 
 const freeze = (form) => {
     form.$data = {
